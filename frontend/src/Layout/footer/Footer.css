@@ -1,0 +1,43 @@
+.footer .card{
+  border:1px solid #00A3E0;
+}
+.footerUl {
+  list-style-type: none;
+}
+
+.footerUl > li {
+  padding-bottom: 9px;
+  color: #82807E;
+}
+
+.footerUl > li:hover {
+  color: #7d6553;
+  cursor: pointer;
+}
+.footerLink {
+  color: #947b69;
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  color: #7d6553;
+  text-decoration: none;
+}
+.headingText {
+  color: #383532;
+}
+
+.divider {
+  border-top: 1px solid #00A3E0;
+  color: #aaa8a5;
+}
+
+.social a {
+  color: #49443f;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.social a:hover {
+  color: #615a52;
+}

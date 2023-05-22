@@ -1,0 +1,171 @@
+.aboutt {
+  padding: 100px 0;
+}
+
+.about1 {
+  background: url("../../Assets/images/about-us-img.jpg") center no-repeat;
+  font-family: "Alexandria", sans-serif;
+  background-size: cover;
+  width: 27rem;
+  height: 35rem;
+  overflow: hidden;
+  float: left;
+}
+
+section .row {
+  margin: 0px 0px 0px 0px;
+}
+
+.services {
+  text-align: left;
+
+}
+
+.services p,
+.card-group p {
+  font-size: 20px;
+  color: rgb(52, 52, 52);
+}
+
+.worksP {
+  color: aliceblue;
+}
+
+.icon0 {
+  display: flex;
+  justify-content: center;
+  color: rgb(31, 31, 32);
+}
+
+.ourValueIcon {
+  width: 3rem;
+  height: 3rem;
+}
+
+.ourValues {
+  font-size: 1rem;
+  color: #4f4c4c;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.ourWorksSection {
+  padding: 40px 0;
+  margin-bottom: 50px;
+  background-color: white;
+  border-top: 1px solid #000000 ;
+  border-bottom: 1px solid #000000 ;
+}
+
+.ourWorkHeader {
+  color: #000000;
+  text-align: center;
+  margin-bottom:20px ;
+}
+
+.ourWorkP {
+  margin-top: 0px;
+  font-size: 20px;
+  color: #000000;
+  text-align: center;
+}
+
+.cta {
+  border: none;
+  background: none;
+}
+
+.cta span {
+  margin: 48px;
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active svg {
+  transform: scale(0.9);
+}
+
+
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/*------------------------------start contact section--------------------------------- */
+
+.contact {
+  background-color: #00A3E0;
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+
+.contact h1,
+.contact h4 {
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.contact div {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact div span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100%;
+  width: 80px;
+  height: 80px;
+  background-color: white;
+  margin: 10px 30px;
+}
+
+.contact div span .iconAbout {
+  font-size:22px;
+  text-decoration: none;
+  color: black;
+}
+
+.contact div a {
+  color: black;
+  text-decoration: none;
+}
+
+.contact div a:hover span .iconAbout {
+  color: #F58635;
+  transition-timing-function: linear;
+  transition-duration: 0.5s;
+  transform: scale(1.2);
+}
+
+/*------------------------------end contact section--------------------------------- */

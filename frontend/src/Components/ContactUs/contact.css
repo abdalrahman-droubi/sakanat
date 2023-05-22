@@ -1,0 +1,22 @@
+.contact__form {
+    background: linear-gradient(to right, #00A3E0, #fff);
+    height: 700px;
+    padding-top: 5rem;
+
+}
+
+.contact__form form {
+    margin-top: 3rem;
+}
+
+.bg-image {
+    background-image: url(../../Assets/images/12982910_5124556.jpg);
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contact__form .submit-b {
+    background-color: #00A3E0;
+    color: white;
+}
