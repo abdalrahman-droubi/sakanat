@@ -1,64 +1,58 @@
-import React, { useContext } from "react";
-import "../Login/Login";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import "../Login/login.css";
+import { Link, useNavigate } from "react-router-dom";
 // import { GoogleLogin } from "react-google-login";
 // import { gapi } from "gapi-script";
-import { useNavigate } from "react-router-dom";
 // import { DataCardContext } from "../Products/Context"
 const client_id =
   "928488147008-b5nobd5nfm448iuodhlqg46tor6c7htm.apps.googleusercontent.com";
 
-  
-const SingnUp = () => {
+function SingnUp() {
   // const ctx = useContext(DataCardContext)
   const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [isEmailValid, setEmailError] = useState(false);
+  const [password, setPassword] = useState("");
+  const [isValidPass, setPasswordError] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [isValidConfirm, setIsConfirmValid] = useState(false);
+  const navigate = useNavigate();
+
   function handleNameChange(event) {
     const { value } = event.target;
     setFullName(value);
   }
 
   // check email
-  const [email, setEmail] = useState("");
-  const [isEmailValid, setEmailError] = useState(false);
-  const handleEmailChange = (event) => {
+  function handleEmailChange(event) {
     const { value } = event.target;
     setEmail(value);
     setEmailError(validateEmail(value));
-  };
-  const validateEmail = (email) => {
-    // Regular expression to match email format
+  }
+  function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-  };
+  }
 
   // check password
-  const [password, setPassword] = useState("");
-  const [isValidPass, setPasswordError] = useState(false);
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [isValidConfirm, setIsConfirmValid] = useState(false);
-
-  const handlePassword = (event) => {
+  function handlePassword(event) {
     const { value } = event.target;
     setPassword(value);
     setPasswordError(validatePassword(value));
-  };
-  const validatePassword = (password) => {
+  }
+  function validatePassword(password) {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     return passwordRegex.test(password);
-  };
+  }
 
   // check confirm password
-  const handleConfirmPass = (event) => {
+  function handleConfirmPass(event) {
     const { value } = event.target;
     setConfirmPassword(value);
     setIsConfirmValid(value === password);
-  };
-
-  const navigate = useNavigate();
+  }
 
   function handleSubmit(event) {
-    window.localStorage.clear();
     event.preventDefault();
     const userInputs = {
       user_name: fullName,
@@ -67,9 +61,9 @@ const SingnUp = () => {
     };
     window.localStorage.setItem("user", JSON.stringify(userInputs));
     // ctx.refresh();
-    navigate("/");
-
+    navigate("/Login");
   }
+
   // useEffect(() => {
   //   function start() {
   //     gapi.client
@@ -207,10 +201,7 @@ const SingnUp = () => {
                     </div>
 
                     <button className="uiverse-btn mt-5" type="submit">
-                      <span className="hover-underline-animation">
-                        {" "}
-                        Sign up
-                      </span>
+                      <span className="hover-underline-animation">Sign up</span>
                       <svg
                         viewBox="0 0 46 16"
                         height="10"
@@ -229,10 +220,10 @@ const SingnUp = () => {
                     <div className="d-sm-flex align-items-center">
                       <span className="ml-auto">
                         <p className="haveAccount">
-                          If you already have an account, just{" "}
+                          If you already have an account, just
                           <Link to="/Login" className="haveAccountLink">
                             login.
-                          </Link>{" "}
+                          </Link>
                         </p>
                       </span>
                     </div>
@@ -245,6 +236,6 @@ const SingnUp = () => {
       </div>
     </>
   );
-};
+}
 
 export default SingnUp;

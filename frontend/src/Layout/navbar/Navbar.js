@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { BsFillCartFill } from "react-icons/bs";
 import {
   AiOutlineHeart,
@@ -14,15 +14,26 @@ import logo from "../../Assets/images/main logo .png";
 
 const Navbar = () => {
   const [showSideMenu, setShowSideMenu] = useState(false);
-  const [isActiveNavbar, setActiveNAvbar] = useState(1);
+  const [isActiveNavbar, setActiveNAvbar] = useState();
+  const { pathname } = useLocation();
 
   function handleToggleSideMenu() {
     setShowSideMenu(!showSideMenu);
   }
 
-  function handelActiveNavbar(id) {
-    setActiveNAvbar(id);
-  }
+  useEffect(() => {
+    if (pathname == "/") {
+      setActiveNAvbar(1);
+    } else if (pathname == "/services") {
+      setActiveNAvbar(2);
+    } else if (pathname == "/aboutPage") {
+      setActiveNAvbar(3);
+    } else if (pathname == "/ContactUs") {
+      setActiveNAvbar(4);
+    } else {
+      setActiveNAvbar(0);
+    }
+  }, [pathname]);
 
   function handleLogout() {
     localStorage.removeItem("user");
@@ -63,7 +74,6 @@ const Navbar = () => {
                 className={
                   isActiveNavbar == 1 ? "nav-link active-navbar" : "nav-link"
                 }
-                onClick={() => handelActiveNavbar(1)}
                 to="/"
               >
                 Home
@@ -74,8 +84,7 @@ const Navbar = () => {
                 className={
                   isActiveNavbar == 2 ? "nav-link active-navbar" : "nav-link"
                 }
-                onClick={() => handelActiveNavbar(2)}
-                to="/Products"
+                to="/services"
               >
                 Services
               </Link>
@@ -85,7 +94,6 @@ const Navbar = () => {
                 className={
                   isActiveNavbar == 3 ? "nav-link active-navbar" : "nav-link"
                 }
-                onClick={() => handelActiveNavbar(3)}
                 to="/aboutPage"
               >
                 About
@@ -96,7 +104,6 @@ const Navbar = () => {
                 className={
                   isActiveNavbar == 4 ? "nav-link active-navbar" : "nav-link"
                 }
-                onClick={() => handelActiveNavbar(4)}
                 to="/ContactUs"
               >
                 Contact us
@@ -105,24 +112,24 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div className=" btn main-btn rounded-pill ms-lg-5">
-          {false ? (
-            <>
-              <button
-                className="logoutBtn "
-                onClick={() => {
-                  handleLogout();
-                }}
-              >
-                Log out
-              </button>
-            </>
-          ) : (
-            <Link className="log__in" to="/Login">
-              Login
-            </Link>
-          )}
-        </div>
+        {/* <div className=" btn main-btn rounded-pill ms-lg-5"> */}
+        {false ? (
+          <>
+            <button
+              className="logoutBtn "
+              onClick={() => {
+                handleLogout();
+              }}
+            >
+              Log out
+            </button>
+          </>
+        ) : (
+          <Link className="log__in" to="/Login">
+            <div className=" btn main-btn rounded-pill ms-lg-5">Login</div>
+          </Link>
+        )}
+        {/* </div> */}
       </div>
     </nav>
   );

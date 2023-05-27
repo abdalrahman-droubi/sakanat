@@ -1,0 +1,86 @@
+/*------------------------------start provider section--------------------------------- */
+
+
+.provider {
+    background-color: #ffffff;
+    width: 1200px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    border-radius: 40px;
+}
+
+.provider .title {
+    text-align: center;
+}
+.provider .title h2 {
+    padding-bottom: 20px;
+}
+.provider .company {
+    position: relative;
+    display: flex;
+    padding: 20px;
+    height: 280px;
+}
+.provider .company:hover {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.provider .company img {
+    border-radius: 10px;
+    width: 300px;
+    height: 230px;
+    /* box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19); */
+
+}
+
+.provider .company .text {
+    width: 700px;
+    padding: 0 20px;
+}
+
+.provider .company button {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 130px;
+    height: 40px;
+    border: none;
+    border-radius: 18px;
+    background-color: #F58635;
+}
+
+.provider .company button a {
+    color: white;
+}
+
+@media screen and (max-width: 1200px) {
+    .provider {
+        width: 370px;
+    }
+
+    .provider .company {
+        height: 320px;
+    }
+
+    .provider .company img {
+        width: 120px;
+        height: 80px;
+    }
+
+    .provider .company .text {
+        width: 250px;
+        font-size: 10px;
+        overflow-y: scroll;
+    }
+
+    .provider .company button {
+        width: 80px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+}
+
+/*------------------------------end provider section--------------------------------- */

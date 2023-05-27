@@ -1,0 +1,64 @@
+/*------------------------------ start select  section --------------------------------- */
+.select {
+    width: 1000px;
+    height: 90px;
+    background-color: white;
+    border: 1px black solid;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.24), 0 4px 12px 0 rgba(0, 0, 0, 0.19);
+}
+
+.select div {
+    width: 4px;
+    height: 80%;
+    background-color: #F58635;
+}
+
+.select select {
+    width: 250px;
+    border: none;
+    font-size: 18px;
+}
+
+.select button {
+    width: 200px;
+    height: 60px;
+    border: none;
+    border-radius: 18px;
+    font-size: 18px;
+    color: white;
+    background-color: #F58635;
+    text-decoration: none;
+}
+
+.select select:focus option:first-of-type {
+    display: none;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .select {
+        width: auto;
+        height: 50px;
+        margin: 100px 5px;
+    }
+
+    .select select {
+        width: 100px;
+        border: none;
+        font-size: 10px;
+    }
+
+    .select button {
+        width: 100px;
+        height: 30px;
+        font-size: 18px;
+    }
+}
+
+/*------------------------------end select section--------------------------------- */

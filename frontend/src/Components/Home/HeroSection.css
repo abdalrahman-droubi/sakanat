@@ -2,10 +2,10 @@
     height: calc(100vh);
 }
 
-.carousel-control-next,
+/* .carousel-control-next,
 .carousel-control-prev {
     display: none;
-}
+} */
 
 .carousel-caption {
     color: black;
@@ -36,12 +36,12 @@
     top: 10px;
     flex-direction: column;
 }
-
+ 
 .carousel-indicators [data-bs-target] {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     margin: 5px 0;
     border: 1px white solid;
     border-radius: 5px;
     width: 10px;
     height: 75px;
-}
+}  

@@ -1,12 +1,43 @@
 import "./login.css";
 import React, { useState, useEffect } from "react";
-import { Link, json, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 // import { GoogleLogin } from "react-google-login";
 // import { gapi } from "gapi-script";
 const client_id =
   "928488147008-b5nobd5nfm448iuodhlqg46tor6c7htm.apps.googleusercontent.com";
 
-const Login = () => {
+function Login() {
+  const [userInputs, setUserInputs] = useState({
+    userEmail: "",
+    userPass: "",
+  });
+  const [IsFound, setIsFound] = useState(false);
+  const [savedUserInputs, setsavedUserInputs] = useState(
+    JSON.parse(localStorage.getItem("user")) || []
+  );
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(savedUserInputs);
+    console.log(userInputs);
+    if (
+      userInputs.userEmail === savedUserInputs.email &&
+      userInputs.userPass === savedUserInputs.password
+    ) {
+      navigate("/")
+    } else {
+      alert("email or password are inccorect")
+    }
+  };
+
+  // check if email and password === to email and password in local storage
+  // function checkAccount() {}
+
   // useEffect(() => {
   //   function start() {
   //     gapi.client
@@ -20,38 +51,6 @@ const Login = () => {
   //   }
   //   gapi.load("client:auth2", start);
   // });
-
-  const [userInputs, setUserInputs] = useState({
-    userEmail: "",
-    userPass: "",
-  });
-
-  const navigate = useNavigate();
-  const savedUserInputs = JSON.parse(localStorage.getItem("userInputs"));
-  const [IsFound, setIsFound] = useState(false);
-
-  // check if email and password === to email and password in local storage
-  function checkAccount(savedUserInputs) {
-    if (
-      userInputs.email === savedUserInputs.email &&
-      userInputs.password === savedUserInputs.password
-    ) {
-      setIsFound(true);
-    } else {
-      setIsFound(false);
-    }
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(userInputs);
-    checkAccount(userInputs);
-    IsFound ? navigate("/") : alert("email or password are inccorect");
-  };
-
-  const onChange = (e) => {
-    setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
-  };
 
   const onSuccess = (res) => {
     console.log("Login success ! current user : ", res.profileObj);
@@ -89,7 +88,7 @@ const Login = () => {
                   <form action="#" method="post" onSubmit={handleSubmit}>
                     <div className="input-container mt-5 mb-5">
                       <input
-                        onChange={onChange}
+                        onChange={handleChange}
                         value={userInputs.email}
                         name="userEmail"
                         type="email"
@@ -105,7 +104,7 @@ const Login = () => {
 
                     <div className="input-container mt-5 mb-5">
                       <input
-                        onChange={onChange}
+                        onChange={handleChange}
                         value={userInputs.password}
                         type="password"
                         name="userPass"
@@ -140,9 +139,9 @@ const Login = () => {
                     <div className="d-sm-flex mb-5 align-items-center">
                       <span className="ml-auto">
                         <p className="haveAccount">
-                          Not a member ?{" "}
+                          Not a member?
                           <Link to="/SignUp" className="haveAccountLink">
-                            Signup now
+                            SignUp Now
                           </Link>
                         </p>
                       </span>
@@ -156,6 +155,6 @@ const Login = () => {
       </div>
     </>
   );
-};
+}
 
 export default Login;

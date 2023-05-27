@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 function HeroSection() {
   return (
     <>
-      <Carousel>
+      <Carousel fade pause={false} controls={false}>
         <Carousel.Item interval={3000}>
           <img className="d-block w-100" src={img1} alt="First slide" />
           <Carousel.Caption className="caption1">
