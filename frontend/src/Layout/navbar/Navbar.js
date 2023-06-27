@@ -1,47 +1,47 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { BsFillCartFill } from "react-icons/bs";
-import {
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-  AiOutlineUser,
-  AiOutlineOrderedList,
-} from "react-icons/ai";
+// import { BsFillCartFill } from "react-icons/bs";
+// import {
+//   AiOutlineHeart,
+//   AiOutlineShoppingCart,
+//   AiOutlineUser,
+//   AiOutlineOrderedList,
+// } from "react-icons/ai";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import "./Navbar.css";
 import logo from "../../Assets/images/main logo .png";
+import { UserDataContext } from "../../context/userDataContext";
+import { ProfileDropdown } from "./profileDropDown";
 
 const Navbar = () => {
   const [showSideMenu, setShowSideMenu] = useState(false);
   const [isActiveNavbar, setActiveNAvbar] = useState();
   const { pathname } = useLocation();
+  const { isLoggedIn } = useContext(UserDataContext);
 
   function handleToggleSideMenu() {
     setShowSideMenu(!showSideMenu);
   }
 
   useEffect(() => {
-    if (pathname == "/") {
+    if (pathname === "/") {
       setActiveNAvbar(1);
-    } else if (pathname == "/services") {
+    } else if (pathname === "/services") {
       setActiveNAvbar(2);
-    } else if (pathname == "/aboutPage") {
+    } else if (pathname === "/aboutPage") {
       setActiveNAvbar(3);
-    } else if (pathname == "/ContactUs") {
+    } else if (pathname === "/ContactUs") {
       setActiveNAvbar(4);
     } else {
       setActiveNAvbar(0);
     }
   }, [pathname]);
 
-  function handleLogout() {
-    localStorage.removeItem("user");
-    // ctx.refresh();
-  }
 
   return (
-    <nav className="navbar navbar-expand-lg" id="navbar">
+    <>
+    <nav className="navbar navbar-expand-lg sticky-top" id="navbar">
       <div className="container">
         <button
           className="navbar-toggler"
@@ -59,7 +59,7 @@ const Navbar = () => {
         </button>
 
         <Link className="navbar-brand mt-2 mt-lg-0 me-5 logo-navbar" to="/">
-          <img src={logo} className="w-100 h-100" />
+          <img src={logo} className="w-100 h-100" alt="logo" />
         </Link>
 
         <div
@@ -72,7 +72,7 @@ const Navbar = () => {
             <li className="nav-item p-2">
               <Link
                 className={
-                  isActiveNavbar == 1 ? "nav-link active-navbar" : "nav-link"
+                  isActiveNavbar === 1 ? "nav-link active-navbar" : "nav-link"
                 }
                 to="/"
               >
@@ -82,7 +82,7 @@ const Navbar = () => {
             <li className="nav-item p-2">
               <Link
                 className={
-                  isActiveNavbar == 2 ? "nav-link active-navbar" : "nav-link"
+                  isActiveNavbar === 2 ? "nav-link active-navbar" : "nav-link"
                 }
                 to="/services"
               >
@@ -92,7 +92,7 @@ const Navbar = () => {
             <li className="nav-item p-2">
               <Link
                 className={
-                  isActiveNavbar == 3 ? "nav-link active-navbar" : "nav-link"
+                  isActiveNavbar === 3 ? "nav-link active-navbar" : "nav-link"
                 }
                 to="/aboutPage"
               >
@@ -102,7 +102,7 @@ const Navbar = () => {
             <li className="nav-item p-2">
               <Link
                 className={
-                  isActiveNavbar == 4 ? "nav-link active-navbar" : "nav-link"
+                  isActiveNavbar === 4 ? "nav-link active-navbar" : "nav-link"
                 }
                 to="/ContactUs"
               >
@@ -113,16 +113,10 @@ const Navbar = () => {
         </div>
 
         {/* <div className=" btn main-btn rounded-pill ms-lg-5"> */}
-        {false ? (
+        {isLoggedIn ? (
           <>
-            <button
-              className="logoutBtn "
-              onClick={() => {
-                handleLogout();
-              }}
-            >
-              Log out
-            </button>
+            {/* Avatar */}
+            <ProfileDropdown/>
           </>
         ) : (
           <Link className="log__in" to="/Login">
@@ -132,6 +126,7 @@ const Navbar = () => {
         {/* </div> */}
       </div>
     </nav>
+    </>
   );
 };
 

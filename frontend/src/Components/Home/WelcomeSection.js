@@ -75,7 +75,7 @@ function WelcomeSection() {
                   </p>
                 </div>
               </div>
-              <Link className="btn btn-primary py-3 px-5 mt-2" to="aboutPage">
+              <Link className="btn  py-3 px-5 mt-2" style={{backgroundColor:"#F58635"}} to="aboutPage">
                 Read More
               </Link>
             </div>

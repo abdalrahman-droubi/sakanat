@@ -29,8 +29,8 @@ const About = () => {
                     local businesses.
                   </p>
 
-                  <div class="cta">
-                    <span class="hover-underline-animation">Our value</span>
+                  <div className="cta">
+                    <span className="hover-underline-animation">Our value</span>
                     <svg
                       viewBox="0 0 46 16"
                       height="10"

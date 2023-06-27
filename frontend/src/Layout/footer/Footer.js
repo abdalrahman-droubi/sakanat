@@ -11,8 +11,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <div className="container-fluid footer">
-        <div className="card bg-white p-5">
+      <div className=" footer">
+        <div className=" bg-white p-5">
           <div className="row mb-4">
             <div className="col-lg-4 col-sm-4 col-xs-4">
               <div className="footer-text footerUl">

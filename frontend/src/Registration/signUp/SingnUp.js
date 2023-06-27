@@ -1,14 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import "../Login/login.css";
 import { Link, useNavigate } from "react-router-dom";
-// import { GoogleLogin } from "react-google-login";
-// import { gapi } from "gapi-script";
-// import { DataCardContext } from "../Products/Context"
-const client_id =
-  "928488147008-b5nobd5nfm448iuodhlqg46tor6c7htm.apps.googleusercontent.com";
+import axios from "axios";
+import { UserDataContext } from "../../context/userDataContext";
 
 function SingnUp() {
-  // const ctx = useContext(DataCardContext)
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [isEmailValid, setEmailError] = useState(false);
@@ -16,7 +12,9 @@ function SingnUp() {
   const [isValidPass, setPasswordError] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isValidConfirm, setIsConfirmValid] = useState(false);
+  const [errorSingup, setErrorSingup] = useState(null);
   const navigate = useNavigate();
+  const {userRefresh} = useContext(UserDataContext)
 
   function handleNameChange(event) {
     const { value } = event.target;
@@ -29,6 +27,7 @@ function SingnUp() {
     setEmail(value);
     setEmailError(validateEmail(value));
   }
+
   function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -53,39 +52,30 @@ function SingnUp() {
   }
 
   function handleSubmit(event) {
-    event.preventDefault();
-    const userInputs = {
-      user_name: fullName,
-      email: email,
-      password: password,
-    };
-    window.localStorage.setItem("user", JSON.stringify(userInputs));
-    // ctx.refresh();
-    navigate("/Login");
+    if (isEmailValid && isValidPass && isValidConfirm) {
+      event.preventDefault();
+      const userInputs = {
+        fullName: fullName,
+        email: email,
+        password: password,
+        role: "user",
+      };
+
+      axios
+        .post("http://localhost:5500/api/register", userInputs)
+        .then((res) => {
+          localStorage.setItem("token", JSON.stringify(res.data.token));
+          navigate("/");
+          setErrorSingup(null);
+          userRefresh()
+        })
+        .catch((error) => {
+          console.log(error);
+          setErrorSingup(error.response.data.error);
+        });
+    }
   }
 
-  // useEffect(() => {
-  //   function start() {
-  //     gapi.client
-  //       .init({
-  //         client_id: client_id,
-  //         scope: "https://www.googleapis.com/auth/calendar",
-  //       })
-  //       .then(function () {
-  //         console.log("Google API client initialized");
-  //       });
-  //   }
-  //   gapi.load("client:auth2", start);
-  // });
-  const onSuccess = (res) => {
-    console.log("Login success ! current user : ", res.profileObj);
-    localStorage.setItem("userInputs", JSON.stringify(res.profileObj));
-    navigate("/Home");
-  };
-
-  const onFailure = (res) => {
-    console.log("Login Failed ! res: ", res);
-  };
   return (
     <>
       <div className="half ">
@@ -107,7 +97,7 @@ function SingnUp() {
                       cookiePolicy={"single_host_origin"}
                     /> */}
                   </div>
-                  <form action="#" method="post" onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit}>
                     {/* Your login form fields */}
 
                     <div className="input-container ">
@@ -212,11 +202,16 @@ function SingnUp() {
                         <path
                           transform="translate(30)"
                           d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
-                          userInputs-name="Path 10"
+                          userinputs-name="Path 10"
                           id="Path_10"
                         ></path>
                       </svg>
                     </button>
+                    {errorSingup && (
+                      <div className="alert alert-danger m-auto mt-3" style={{width:"fit-content"}} role="alert">
+                        <>{errorSingup}</>
+                      </div>
+                    )}
                     <div className="d-sm-flex align-items-center">
                       <span className="ml-auto">
                         <p className="haveAccount">

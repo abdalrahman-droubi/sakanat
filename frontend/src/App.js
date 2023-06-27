@@ -9,11 +9,13 @@ import ContactUs from "./Pages/ContactUs";
 import Login from "./Registration/Login/Login";
 import SingnUp from "./Registration/signUp/SingnUp";
 import Services from "./Pages/Services";
+import { UserProfile } from "./Pages/UserProfile";
+import { EditProfile } from "./Components/UserProfile/EditProfile";
 
 function App() {
   const ScrollToTop = () => {
     const { pathname } = useLocation();
- 
+
     useEffect(() => {
       window.scrollTo(0, 0);
     }, [pathname]);
@@ -33,6 +35,8 @@ function App() {
         {/* <Route path="/Checkout" element={<Checkout />} /> */}
         <Route path="/SignUp" element={<SingnUp />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/editProfile" element={<EditProfile />} />
       </Routes>
       <Footer />
     </>

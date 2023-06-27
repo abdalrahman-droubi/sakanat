@@ -1,21 +1,17 @@
+import axios from "axios";
 import "./login.css";
-import React, { useState, useEffect } from "react";
+import React, { useState ,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-// import { GoogleLogin } from "react-google-login";
-// import { gapi } from "gapi-script";
-const client_id =
-  "928488147008-b5nobd5nfm448iuodhlqg46tor6c7htm.apps.googleusercontent.com";
+import { UserDataContext } from "../../context/userDataContext";
 
 function Login() {
-  const [userInputs, setUserInputs] = useState({
-    userEmail: "",
-    userPass: "",
-  });
-  const [IsFound, setIsFound] = useState(false);
-  const [savedUserInputs, setsavedUserInputs] = useState(
-    JSON.parse(localStorage.getItem("user")) || []
-  );
+  const {userRefresh} = useContext(UserDataContext)
   const navigate = useNavigate();
+  const [userInputs, setUserInputs] = useState({
+    email: "",
+    password: "",
+  });
+  const [errorSingup, setErrorSingup] = useState(null);
 
   const handleChange = (e) => {
     setUserInputs({ ...userInputs, [e.target.name]: e.target.value });
@@ -23,44 +19,20 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(savedUserInputs);
-    console.log(userInputs);
-    if (
-      userInputs.userEmail === savedUserInputs.email &&
-      userInputs.userPass === savedUserInputs.password
-    ) {
-      navigate("/")
-    } else {
-      alert("email or password are inccorect")
-    }
+    axios
+      .post("http://localhost:5500/api/auth", userInputs)
+      .then((res) => {
+        localStorage.setItem("token", JSON.stringify(res.data.token));
+        navigate("/");
+        setErrorSingup(null);
+        userRefresh()
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrorSingup(error.response.data.error);
+      });
   };
 
-  // check if email and password === to email and password in local storage
-  // function checkAccount() {}
-
-  // useEffect(() => {
-  //   function start() {
-  //     gapi.client
-  //       .init({
-  //         client_id: client_id,
-  //         scope: "https://www.googleapis.com/auth/calendar",
-  //       })
-  //       .then(function () {
-  //         console.log("Google API client initialized");
-  //       });
-  //   }
-  //   gapi.load("client:auth2", start);
-  // });
-
-  const onSuccess = (res) => {
-    console.log("Login success ! current user : ", res.profileObj);
-    localStorage.setItem("userInputs", JSON.stringify(res.profileObj));
-    navigate("/Home");
-  };
-
-  const onFailure = (res) => {
-    console.log("Login Failed ! res: ", res);
-  };
   return (
     <>
       <div className="half ">
@@ -90,7 +62,7 @@ function Login() {
                       <input
                         onChange={handleChange}
                         value={userInputs.email}
-                        name="userEmail"
+                        name="email"
                         type="email"
                         id="userEmail"
                         required
@@ -107,7 +79,7 @@ function Login() {
                         onChange={handleChange}
                         value={userInputs.password}
                         type="password"
-                        name="userPass"
+                        name="password"
                         id="userPass"
                         required
                         className="form-input"
@@ -118,6 +90,15 @@ function Login() {
                       </label>
                       <div className="underline"></div>
                     </div>
+                    {errorSingup && (
+                      <div
+                        className="alert alert-danger m-auto mt-3"
+                        style={{ width: "fit-content" }}
+                        role="alert"
+                      >
+                        <>{errorSingup}</>
+                      </div>
+                    )}
                     <button className="uiverse-btn mt-5" type="submit">
                       <span className="hover-underline-animation">Login</span>
                       <svg
@@ -135,7 +116,6 @@ function Login() {
                         ></path>
                       </svg>
                     </button>
-
                     <div className="d-sm-flex mb-5 align-items-center">
                       <span className="ml-auto">
                         <p className="haveAccount">

@@ -1,5 +1,5 @@
 .footer .card{
-  border:1px solid #00A3E0;
+  /* border:1px solid #00A3E0; */
 }
 .footerUl {
   list-style-type: none;
@@ -28,7 +28,7 @@
 }
 
 .divider {
-  border-top: 1px solid #00A3E0;
+  border-top: 1px solid #299bb8;
   color: #aaa8a5;
 }
 
