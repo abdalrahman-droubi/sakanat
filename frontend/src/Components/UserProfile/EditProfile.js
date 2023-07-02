@@ -12,15 +12,14 @@ export const EditProfile = () => {
     fullName: user.fullName,
     phoneNumber: user.phoneNumber,
     password: "",
+    newPassword: "",
   });
-  const [conPassword, setConpassword] = useState("");
   const navigate = useNavigate();
-
 
   const validateForm = () => {
     const errors = {};
     // Perform validation checks
-    if (!(editUser.password === "" && conPassword === "")) {
+    if (!(editUser.password === "" && editUser.newPassword === "")) {
       if (
         !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(
           editUser.password
@@ -29,8 +28,13 @@ export const EditProfile = () => {
         errors.password =
           "Please enter a password that is at least 8 characters long and contains at least one lowercase letter, one uppercase letter, and one number.";
       }
-      if (!(editUser.password === conPassword)) {
-        errors.conPassword = "The passwords do not match.";
+      if (
+        !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(
+          editUser.newPassword
+        )
+      ) {
+        errors.newPassword =
+          "Please enter a password that is at least 8 characters long and contains at least one lowercase letter, one uppercase letter, and one number.";
       }
     }
 
@@ -57,12 +61,14 @@ export const EditProfile = () => {
       axios
         .put(`http://localhost:5500/api/updateUser/${user._id}`, editUser)
         .then((res) => {
-          navigate('/userprofile')
+          navigate("/userprofile");
           userRefresh();
           console.log(res);
         })
         .catch((error) => {
-          console.log(errors);
+          console.log(error.response.data.error);
+          errors.password = error.response.data.error
+          setErrors(errors)
         });
     } else {
       setErrors(errors);
@@ -130,7 +136,7 @@ export const EditProfile = () => {
                     {/* Form Group (first name)*/}
                     <div className="col-md-6">
                       <label className="small mb-1" htmlFor="inputFirstName">
-                        New Password
+                      Current Password
                       </label>
                       <input
                         className="form-control"
@@ -147,21 +153,19 @@ export const EditProfile = () => {
                     {/* Form Group (last name)*/}
                     <div className="col-md-6">
                       <label className="small mb-1" htmlFor="inputLastName">
-                        Confirm New Password
+                      New Password
                       </label>
                       <input
                         className="form-control"
-                        onChange={(e) => {
-                          setConpassword(e.target.value);
-                        }}
-                        name="lname"
+                        onChange={handleChange}
+                        name="newPassword"
                         id="inputLastName"
                         type="text"
-                        value={conPassword}
+                        value={editUser.newPassword}
                       />
-                      {errors.conPassword && (
+                      {errors.newPassword && (
                         <span className="text-danger">
-                          {errors.conPassword}
+                          {errors.newPassword}
                         </span>
                       )}
                     </div>
@@ -182,6 +186,7 @@ export const EditProfile = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };

@@ -19,22 +19,28 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const { password, phoneNumber, fullName } = req.body;
+    const { password, phoneNumber, fullName, newPassword } = req.body;
     const { id } = req.params;
     const user = await User.findById(id);
 
     if (password) {
-      const hashpassword = await bcrypt.hash(password, 10);
+      const truePassword = await bcrypt.compare(password, user.password);
+      if (!truePassword)
+        return res.status(401).json({ error: "incorrect password" });
+
+      const hashpassword = await bcrypt.hash(newPassword, 10);
       user.fullName = fullName || user.fullName;
       user.phoneNumber = phoneNumber || user.phoneNumber;
       user.password = hashpassword;
       const updatedUser = await user.save();
-      res.json(updatedUser);
+
+      res.status(200).json(updatedUser);
     } else {
       user.fullName = fullName || user.fullName;
       user.phoneNumber = phoneNumber || user.phoneNumber;
       const updatedUser = await user.save();
-      res.json(updatedUser);
+
+      res.status(200).json(updatedUser);
     }
   } catch (error) {
     res.status(500).json({ error: `${error.message} in updateUser` });

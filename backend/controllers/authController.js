@@ -15,13 +15,15 @@ const handleLogin = async (req, res) => {
     const match = await bcrypt.compare(password, foundUser.password);
     if (match) {
       // create JWTs
-      const fullName = foundUser.fullName
-      const email = foundUser.email
-      const role = foundUser.role
-      const token = jwtTokens({ fullName, email, role });
-      res
-        .status(201)
-        .json({ success: ` user ${foundUser.fullName} are authorized`, token: token });
+      const fullName = foundUser.fullName;
+      const email = foundUser.email;
+      const role = foundUser.role;
+      const _id = foundUser._id;
+      const token = jwtTokens({ fullName, email, role, _id });
+      res.status(201).json({
+        success: ` user ${foundUser.fullName} are authorized`,
+        token: token,
+      });
     } else {
       res.status(401).json({ error: "incorrect password" });
     }
@@ -30,8 +32,8 @@ const handleLogin = async (req, res) => {
   }
 };
 
-function jwtTokens({ fullName, email, role }) {
-  const userToken = { fullName, email, role };
+function jwtTokens({ fullName, email, role, _id }) {
+  const userToken = { fullName, email, role, _id };
   const accessToken = jwt.sign(userToken, process.env.JWT_SECRET);
   return accessToken;
 }
