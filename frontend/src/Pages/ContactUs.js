@@ -1,7 +1,13 @@
 import Contact from "../Components/ContactUs/Contact";
+
+// import { Contacts } from "../Components/ContactUs/Contacts";
+
 function ContactUs() {
-    return ( 
+    return (
+        <> 
         <Contact/>  
+       {/* <Contacts/> */}
+        </>
      );
 }
 

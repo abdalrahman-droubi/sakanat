@@ -84,7 +84,7 @@ const Navbar = () => {
                 className={
                   isActiveNavbar === 2 ? "nav-link active-navbar" : "nav-link"
                 }
-                to="/services"
+                to="/Providers"
               >
                 Services
               </Link>

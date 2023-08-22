@@ -53,7 +53,7 @@ const getOneUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
     res.json(user);
-  } catch (err) {
+  } catch (err) {   
     res.status(500).json({ error: "Failed to retrieve user data", err });
   }
 };

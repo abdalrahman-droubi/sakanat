@@ -8,9 +8,10 @@ import AboutPage from "./Pages/AboutPage";
 import ContactUs from "./Pages/ContactUs";
 import Login from "./Registration/Login/Login";
 import SingnUp from "./Registration/signUp/SingnUp";
-import Services from "./Pages/Services";
+import Providers from "./Pages/Providers";
 import { UserProfile } from "./Pages/UserProfile";
 import { EditProfile } from "./Components/UserProfile/EditProfile";
+import ProviderDetails from "./Pages/ProviderDetails";
 
 function App() {
   const ScrollToTop = () => {
@@ -29,9 +30,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/aboutPage" element={<AboutPage />} />
-        {/* <Route path="/products" element={<Products />} /> */}
+        <Route path="/ProviderDetails" element={<ProviderDetails />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/services" element={<Services />} />
+        <Route path="/Providers" element={<Providers />} />
         {/* <Route path="/Checkout" element={<Checkout />} /> */}
         <Route path="/SignUp" element={<SingnUp />} />
         <Route path="/Login" element={<Login />} />

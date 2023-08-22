@@ -1,5 +1,5 @@
 import "./SearchSection.css";
-import CompanyCard from "./CompanyCard";
+import CompanyCard from "./ProvidersComponant";
 import { useState } from "react";
 
 function SearchSection() {
@@ -13,7 +13,7 @@ function SearchSection() {
   }
   return (
     <>
-      <form onSubmit={handleSubmitSearch}>
+      {/* <form onSubmit={handleSubmitSearch}>
         <div className="select">
           <select name="service" id="service" required aria-controls="">
             <option>Services</option>
@@ -35,7 +35,7 @@ function SearchSection() {
           </select>
           <button type="submit">Search</button>
         </div>
-      </form>
+      </form> */}
       <CompanyCard serviceType={serviceType} location={location}/>
     </>
   );

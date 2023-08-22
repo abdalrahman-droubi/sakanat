@@ -6,10 +6,10 @@ const handleLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
     const foundUser = await User.findOne({ email: email });
-    if (foundUser.active == false)
-      return res.status(401).json({ error: "This Email not active " }); //Unauthorized
     if (!foundUser)
       return res.status(401).json({ error: "Email is incorrect" }); //Unauthorized
+    if (foundUser.active == false)
+      return res.status(401).json({ error: "This Email not active " }); //Unauthorized
 
     // evaluate password
     const match = await bcrypt.compare(password, foundUser.password);
