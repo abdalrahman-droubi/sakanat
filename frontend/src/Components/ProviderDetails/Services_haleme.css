@@ -1,127 +1,152 @@
-.servaices__container{
-    margin-top: 7rem;
+.servaices__container {
+  margin: 2rem 3rem;
 }
-.services__title{
-    margin-bottom: 3rem;
-}
-.span__1{
-    color: rgb(0, 183, 255);
-    margin-right: 15px;
-}
-.span__2{
-    margin-left: 15px;
-    background-color: orange;
-    border-radius: 15px;
-    padding: 3px 12px;
-    color: white;
-}
-.span__3{
-   padding-left: 1rem;
-}
-.slider__services{
-    height: 200px;
-    margin-bottom: 3rem;
-}
-.img__slider{
-    height: 200px !important;
-}
-.form__services {
-    background-color: #00A3E0;
-    display: block;
-    padding: 1rem;
-    max-width: 350px;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    max-height: 28rem;
-  }
-  
-  .form__services .form-title {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
-    font-weight: 600;
-    text-align: center;
-    color: #000;
-  }
-  
-  .form__services .input-container {
-    
-    display: flex;
-    justify-content: center;
-    margin-right: 3rem;
-  }
-  
-  .form__services .input-container input, .form button {
-    outline: none;
-    border: 1px solid #e5e7eb;
-    margin: 8px 0;
-  }
-  
-  .form__services .input-container input {
-    margin-right: 2px;
-    background-color: #fff;
-    padding: 1rem;
- 
-    font-size: 0.875rem;
 
-    width: 300px;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  }
-  .input-containerr{
-    width: 300px;
-  }
-  
-  .form__services .submit {
-    margin: 0 auto;
-    display: block;
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    background-color: #F58635;
-    color: #ffffff;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    font-weight: 500;
-    width: 80%;
-    border-radius: 0.5rem;
-    text-transform: uppercase;
-  }
-  
-  .form__services .signup-link {
-    color: #6B7280;
-    font-size: 0.875rem;
-    line-height: 1.25rem;
-    text-align: center;
-  }
-  
-  .form__services .signup-link a {
-    text-decoration: underline;
-  }
-  .main_form_services{
-    display: flex;
-    justify-content: center;
-  }
-  .card__shopes {
-    width: 200px;
-    height: 250px;
-    background: #f5f5f5;
-    border-radius: 40px 0 40px 0;
-    overflow: hidden;
+.services__title {
+  margin-bottom: 1rem;
+}
+
+.services__title_description {
+  overflow: hidden;
+}
+
+.span__1 {
+  margin-right: 15px;
+}
+
+.span__2 {
+  display: inline-block;
+  margin-left: 15px;
+  background-color: orange;
+  border-radius: 15px;
+  width: 90px;
+  height: 25px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.span__2 a {
+  text-decoration: none;
+  color: white;
+}
+
+.card__shopes {
+  width: 200px;
+  height: 250px;
+  background: #f5f5f5;
+  border-radius: 40px 0 40px 0;
+  overflow: hidden;
 
 }
 
 .card__shopes img {
-    width: 100%;
-    height: 150px;
-    padding: 20px;
+  width: 100%;
+  height: 150px;
+  padding: 20px;
 }
-.card__shopes h1{
-    font-size: 1.5rem;
+
+.card__shopes h1 {
+  font-size: 1.5rem;
 }
-.card__services{
-    margin-bottom: 3rem;
+
+.card__services {
+  margin-bottom: 3rem;
 }
-.main_form_services{
-  
+
+.services__Location__Hours {
+  display: flex;
 }
+
+@media only screen and (max-width: 768px) {
+  .services__Location__Hours {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .services__Hours {
+    margin-top: 30px;
+  }
+}
+
+/* 
+.form__services {
+  background-color: #00A3E0;
+  display: block;
+  padding: 1rem;
+  max-width: 350px;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  max-height: 28rem;
+}
+
+.form__services .form-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  text-align: center;
+  color: #000;
+}
+
+.form__services .input-container {
+
+  display: flex;
+  justify-content: center;
+  margin-right: 3rem;
+}
+
+.form__services .input-container input,
+.form button {
+  outline: none;
+  border: 1px solid #e5e7eb;
+  margin: 8px 0;
+}
+
+.form__services .input-container input {
+  margin-right: 2px;
+  background-color: #fff;
+  padding: 1rem;
+
+  font-size: 0.875rem;
+
+  width: 300px;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.input-containerr {
+  width: 300px;
+}
+
+.form__services .submit {
+  margin: 0 auto;
+  display: block;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background-color: #F58635;
+  color: #ffffff;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 500;
+  width: 80%;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+}
+
+.form__services .signup-link {
+  color: #6B7280;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  text-align: center;
+}
+
+.form__services .signup-link a {
+  text-decoration: underline;
+}
+
+.main_form_services {
+  display: flex;
+  justify-content: center;
+}
+ */

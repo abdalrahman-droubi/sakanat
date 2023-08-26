@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
-function SideBarProviders() {
+function SideBarProviders({ providersData, setProvidersData }) {
+//   const [selectedServices, setSelectedServices] = useState([]);
+//   const [selectedCities, setSelectedCities] = useState([]);
+//   const [selectedRatings, setSelectedRatings] = useState([]);
+
+//   const handleServiceTypeChange = (service) => {
+//     console.log(service);
+//     if (selectedServices.includes(service)) {
+//       setSelectedServices(selectedServices.filter((s) => s !== service));
+//     } else {
+//       setSelectedServices([...selectedServices, service]);
+//     }
+//   };    
+//   const filterProviders = () => {
+//     return providersData.filter((provider) => {
+//       const serviceTypeMatch = selectedServices.length === 0 || selectedServices.includes(provider.serviceType);
+//     //   const cityMatch = selectedCities.length === 0 || selectedCities.includes(provider.city);
+//       // Implement rating filtering logic based on selectedRatings
+  
+//       return serviceTypeMatch ;
+//     });
+//   };
+  
+
+//   const filteredProviders = filterProviders();
+// setProvidersData(filteredProviders);
+
   return (
     <>
       {/* sidebar */}
@@ -10,8 +36,8 @@ function SideBarProviders() {
           className="btn btn-outline-secondary mb-3 w-100 d-lg-none"
           type="button"
           data-mdb-toggle="collapse"
-          data-mdb-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
+          data-mdb-target="#navbarSupportedContentt"
+          aria-controls="navbarSupportedContentt"
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
@@ -20,7 +46,7 @@ function SideBarProviders() {
         {/* Collapsible wrapper */}
         <div
           className="collapse card d-lg-block mb-5"
-          id="navbarSupportedContent"
+          id="navbarSupportedContentt"
         >
           <div className="accordion" id="accordionPanelsStayOpenExample">
             <div className="accordion-item">
@@ -33,7 +59,7 @@ function SideBarProviders() {
                   aria-expanded="true"
                   aria-controls="panelsStayOpen-collapseOne"
                 >
-                  Related items
+                  SERVICES TYPE
                 </button>
               </h2>
               <div
@@ -42,85 +68,26 @@ function SideBarProviders() {
                 aria-labelledby="headingOne"
               >
                 <div className="accordion-body">
-                  <ul className="list-unstyled">
-                    <li>
-                      <a href="#" className="text-dark">
-                        Electronics{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-dark">
-                        Home items{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-dark">
-                        Books, Magazines{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-dark">
-                        Men's clothing{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-dark">
-                        Interiors items{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-dark">
-                        Underwears{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-dark">
-                        Shoes for men{" "}
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-dark">
-                        Accessories{" "}
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header" id="headingTwo">
-                <button
-                  className="accordion-button text-dark bg-light"
-                  type="button"
-                  data-mdb-toggle="collapse"
-                  data-mdb-target="#panelsStayOpen-collapseTwo"
-                  aria-expanded="true"
-                  aria-controls="panelsStayOpen-collapseTwo"
-                >
-                  Brands
-                </button>
-              </h2>
-              <div
-                id="panelsStayOpen-collapseTwo"
-                className="accordion-collapse collapse show"
-                aria-labelledby="headingTwo"
-              >
-                <div className="accordion-body">
                   <div>
                     {/* Checked checkbox */}
                     <div className="form-check">
                       <input
+                        // defaultValue=""
+                        // defaultChecked=""
                         className="form-check-input"
                         type="checkbox"
-                        defaultValue=""
+                        value="House Keeping"
                         id="flexCheckChecked1"
-                        defaultChecked=""
+                        // checked={selectedServices.includes("House Keeping")}
+                        // onChange={(e) =>
+                        //   handleServiceTypeChange(e.target.value)
+                        // }
                       />
                       <label
                         className="form-check-label"
                         htmlFor="flexCheckChecked1"
                       >
-                        Mercedes
+                        House Keeping
                       </label>
                       <span className="badge badge-secondary float-end">
                         120
@@ -139,7 +106,7 @@ function SideBarProviders() {
                         className="form-check-label"
                         htmlFor="flexCheckChecked2"
                       >
-                        Toyota
+                        Hostel
                       </label>
                       <span className="badge badge-secondary float-end">
                         15
@@ -158,7 +125,7 @@ function SideBarProviders() {
                         className="form-check-label"
                         htmlFor="flexCheckChecked3"
                       >
-                        Mitsubishi
+                        Dry Clean
                       </label>
                       <span className="badge badge-secondary float-end">
                         35
@@ -177,193 +144,258 @@ function SideBarProviders() {
                         className="form-check-label"
                         htmlFor="flexCheckChecked4"
                       >
-                        Nissan
+                        Maintenance
                       </label>
                       <span className="badge badge-secondary float-end">
                         89
                       </span>
                     </div>
-                    {/* Default checkbox */}
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckDefault"
-                      >
-                        Honda
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        30
-                      </span>
-                    </div>
-                    {/* Default checkbox */}
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="flexCheckDefault"
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckDefault"
-                      >
-                        Suzuki
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        30
-                      </span>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div className="accordion-item">
-              <h2 className="accordion-header" id="headingThree">
+              <h2 className="accordion-header" id="headingTwo">
                 <button
                   className="accordion-button text-dark bg-light"
                   type="button"
                   data-mdb-toggle="collapse"
-                  data-mdb-target="#panelsStayOpen-collapseThree"
-                  aria-expanded="false"
-                  aria-controls="panelsStayOpen-collapseThree"
+                  data-mdb-target="#panelsStayOpen-collapseTwo"
+                  aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseTwo"
                 >
-                  Price
+                  CITY
                 </button>
               </h2>
               <div
-                id="panelsStayOpen-collapseThree"
+                id="panelsStayOpen-collapseTwo"
                 className="accordion-collapse collapse show"
-                aria-labelledby="headingThree"
+                aria-labelledby="headingTwo"
               >
                 <div className="accordion-body">
-                  <div className="range">
-                    <input
-                      type="range"
-                      className="form-range"
-                      id="customRange1"
-                    />
-                  </div>
-                  <div className="row mb-3">
-                    <div className="col-6">
-                      <p className="mb-0">Min</p>
-                      <div className="form-outline">
-                        <input
-                          type="number"
-                          id="typeNumber"
-                          className="form-control"
-                        />
-                        <label className="form-label" htmlFor="typeNumber">
-                          $0
-                        </label>
-                      </div>
+                  <div>
+                    {/* Jordanian cities checkboxes */}
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox1"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox1"
+                      >
+                        Amman
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        120
+                      </span>
                     </div>
-                    <div className="col-6">
-                      <p className="mb-0">Max</p>
-                      <div className="form-outline">
-                        <input
-                          type="number"
-                          id="typeNumber"
-                          className="form-control"
-                        />
-                        <label className="form-label" htmlFor="typeNumber">
-                          $1,0000
-                        </label>
-                      </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox2"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox2"
+                      >
+                        Irbid
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        15
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox3"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox3"
+                      >
+                        Aqaba
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        35
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox4"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox4"
+                      >
+                        Zarqa
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        89
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox5"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox5"
+                      >
+                        Ajloun
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        42
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox6"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox6"
+                      >
+                        Jerash
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        18
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox7"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox7"
+                      >
+                        Balqa
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        18
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox8"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox8"
+                      >
+                        Mafraq
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        18
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox9"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox9"
+                      >
+                        Madaba
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        18
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox10"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox10"
+                      >
+                        Karak
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        18
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox11"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox11"
+                      >
+                        Tafilah
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        18
+                      </span>
+                    </div>
+                    <div className="form-check">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        defaultValue=""
+                        id="cityCheckbox12"
+                        defaultChecked=""
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor="cityCheckbox12"
+                      >
+                        Ma'an
+                      </label>
+                      <span className="badge badge-secondary float-end">
+                        18
+                      </span>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    className="btn btn-white w-100 border border-secondary"
-                  >
-                    apply
-                  </button>
                 </div>
               </div>
             </div>
-            <div className="accordion-item">
-              <h2 className="accordion-header" id="headingThree">
-                <button
-                  className="accordion-button text-dark bg-light"
-                  type="button"
-                  data-mdb-toggle="collapse"
-                  data-mdb-target="#panelsStayOpen-collapseFour"
-                  aria-expanded="false"
-                  aria-controls="panelsStayOpen-collapseFour"
-                >
-                  Size
-                </button>
-              </h2>
-              <div
-                id="panelsStayOpen-collapseFour"
-                className="accordion-collapse collapse show"
-                aria-labelledby="headingThree"
-              >
-                <div className="accordion-body">
-                  <input
-                    type="checkbox"
-                    className="btn-check border justify-content-center"
-                    id="btn-check1"
-                    defaultChecked=""
-                    autoComplete="off"
-                  />
-                  <label
-                    className="btn btn-white mb-1 px-1"
-                    style={{ width: 60 }}
-                    htmlFor="btn-check1"
-                  >
-                    XS
-                  </label>
-                  <input
-                    type="checkbox"
-                    className="btn-check border justify-content-center"
-                    id="btn-check2"
-                    defaultChecked=""
-                    autoComplete="off"
-                  />
-                  <label
-                    className="btn btn-white mb-1 px-1"
-                    style={{ width: 60 }}
-                    htmlFor="btn-check2"
-                  >
-                    SM
-                  </label>
-                  <input
-                    type="checkbox"
-                    className="btn-check border justify-content-center"
-                    id="btn-check3"
-                    defaultChecked=""
-                    autoComplete="off"
-                  />
-                  <label
-                    className="btn btn-white mb-1 px-1"
-                    style={{ width: 60 }}
-                    htmlFor="btn-check3"
-                  >
-                    LG
-                  </label>
-                  <input
-                    type="checkbox"
-                    className="btn-check border justify-content-center"
-                    id="btn-check4"
-                    defaultChecked=""
-                    autoComplete="off"
-                  />
-                  <label
-                    className="btn btn-white mb-1 px-1"
-                    style={{ width: 60 }}
-                    htmlFor="btn-check4"
-                  >
-                    XXL
-                  </label>
-                </div>
-              </div>
-            </div>
+
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingThree">
                 <button

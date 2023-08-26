@@ -5,6 +5,7 @@ import ProvidersCard from "./ProvidersCard";
 import SideBarProviders from "./SideBarProviders";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Breadcrumb from "../../Layout/Breadcrumb";
 
 function ProvidersComponant() {
   const [providersData, setProvidersData] = useState([]);
@@ -25,7 +26,7 @@ function ProvidersComponant() {
         <div className="container">
           <div className="row">
             {/* sidebar */}
-            <SideBarProviders />
+            <SideBarProviders providersData={providersData} setProvidersData={setProvidersData}/>
             {/* sidebar */}
             <div className="col-lg-9">
               {/* content */}
