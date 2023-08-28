@@ -8,7 +8,7 @@ export const ProfileDropdown = () => {
   const navigate = useNavigate();
   const handleLogOut = () => {
     localStorage.clear();
-    userRefresh()
+    userRefresh();
     navigate("/");
   };
   return (
@@ -24,14 +24,15 @@ export const ProfileDropdown = () => {
           aria-expanded="false"
         >
           <div className="rounded-circle">
-            <img
+            {/* <img
               src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fHByb2ZpbGUlMjBwaWN0dXJlfGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60"
               className="rounded-circle"
               height={31}
               width={34}
               alt="your profile page"
               loading="lazy"
-            />
+            /> */}
+            <i class="fa-solid fa-user fa-xl"></i>
           </div>
         </a>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -46,7 +47,7 @@ export const ProfileDropdown = () => {
             </Link>
           </li>
           <li className="logout">
-            <Link className="dropdown-item" to={'/'} onClick={handleLogOut}>
+            <Link className="dropdown-item" to={"/"} onClick={handleLogOut}>
               Logout
             </Link>
           </li>

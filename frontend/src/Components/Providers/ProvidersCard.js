@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-function ProvidersCard({ setProvidersData, providersData }) {
-  const jordanTimeOffset = 3;
+function ProvidersCard({ setProvidersData, providersData,filterProvidersData,allfilterProvidersData }) {
+  console.log(filterProvidersData);
   function generateStarIcons(rate) {
     const fullStars = Math.floor(rate);
     const hasHalfStar = rate % 1 !== 0;
@@ -45,7 +45,7 @@ function ProvidersCard({ setProvidersData, providersData }) {
       {/* content */}
       <header className="d-sm-flex align-items-center border-bottom mb-4 pb-3">
         <strong className="d-block py-2">
-          {providersData.length} Providers found{" "}
+          {allfilterProvidersData.length} Providers found{" "}
         </strong>
         <div className="ms-auto">
           <select className="form-select d-inline-block w-auto border pt-1">
@@ -57,7 +57,7 @@ function ProvidersCard({ setProvidersData, providersData }) {
         </div>
       </header>
       <div>
-        {providersData.map((ele) => (
+        {filterProvidersData.map((ele) => (
           <div className="row justify-content-center mb-3">
             <div className="col-md-12">
               <div className="card shadow-0 border rounded-3">

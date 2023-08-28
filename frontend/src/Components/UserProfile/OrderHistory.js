@@ -44,30 +44,84 @@ export const OrderHistory = () => {
                   <div className="gold-members p-4">
                     <div className="media">
                       <div className="media-body">
-                        <h5 className="mb-2">{ele.provider.companyName}</h5>
-                        <div className="d-flex float-end flex-column ">
-                          <span className=" text-info">
-                          <strong className="text-black"> Requested on : </strong>
-                             {requestedOn}
-                          </span>
-                          <span className="text-info">
-                           <strong className="text-black"> Delivered on : </strong>
-                            {deliveredOn}
-                          </span>
+                        <div className="d-flex justify-content-between">
+                          <h3 className="mb-2">{ele.provider.companyName}</h3>
+                          <strong className="float-end">
+                            OrderId : #{ele._id}
+                          </strong>
                         </div>
-                        <p className="text-gray mb-1">
-                          <i className="icofont-location-arrow" /> 730 S
-                          Mendenhall Rd, Memphis, TN 38117, USA
-                        </p>
-                        <p className="text-gray mb-3">
-                          <i className="icofont-list" /> ORDER #25102589748{" "}
-                          <i className="icofont-clock-time ml-2" /> Mon, Nov 12,
-                          6:26 PM
-                        </p>
-                        <p className="text-dark">
-                          Veg Masala Roll x 1, Veg Burger x 1, Veg Penne Pasta
-                          in Red Sauce x 1
-                        </p>
+                        <div className="d-flex justify-content-between flex-wrap">
+                          <div>
+                            <p className=" mb-1">
+                              <strong>status : </strong>
+                              <span
+                                className={
+                                  ele.status == "pending" ||
+                                  ele.status == "inprogres"
+                                    ? "text-warning"
+                                    : ele.status == "completed"
+                                    ? "text-success"
+                                    : "text-danger"
+                                }
+                              >
+                                {ele.status}
+                              </span>
+                            </p>
+                            <p className="text-gray mb-1">
+                              <strong> service Type : </strong>{" "}
+                              {ele.serviceType.name}
+                            </p>
+                            <p className="text-gray mb-1">
+                              <strong> phone Number : </strong>{" "}
+                              {ele.phoneNumber}
+                            </p>
+                            <p className="text-dark mb-1">
+                              <strong>details : </strong>
+                              {ele.details}
+                            </p>
+                          </div>
+                          <div>
+                            <p className=" mb-1">
+                              <strong>company Location : </strong>
+                              <span
+                                className="text-gray mb-1"
+                              >
+                                {ele.provider.city}
+                              </span>
+                            </p>
+                            <p className="text-gray mb-1">
+                              <strong> company service : </strong>{" "}
+                              {ele.provider.serviceType}
+                            </p>
+                            <p className="text-gray mb-1">
+                              <strong>company phone number : </strong>{" "}
+                              {ele.provider.phoneNumber}
+                            </p>
+                          </div>
+                          <div className="d-flex float-end flex-column ">
+                            <span className=" text-info">
+                              <strong className="text-black">
+                                {" "}
+                                Requested on :{" "}
+                              </strong>
+                              {requestedOn}
+                            </span>
+                            <span className="text-info">
+                              <strong className="text-black">
+                                {" "}
+                                Delivered on :{" "}
+                              </strong>
+                              {deliveredOn}
+                            </span>
+                            <span className="text-info">
+                              <strong className="text-black">
+                                {" "}
+                                Delivered on :{" "}
+                              </strong>
+                              {ele.location}
+                            </span>
+                          </div>
+                        </div>
                         <hr />
                         <div className="d-flex justify-content-between">
                           <div className="d-flex gap-1 order-2">
@@ -87,7 +141,7 @@ export const OrderHistory = () => {
                               {" "}
                               Total Paid:
                             </b>{" "}
-                            $300
+                            {ele.serviceType.price} JD
                           </p>
                         </div>
                       </div>

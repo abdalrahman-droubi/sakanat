@@ -61,10 +61,30 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (name === "serviceType") {
+      const selectedService = JSON.parse(value);
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: selectedService,
+      }));
+    } else if (name === "dateTime") {
+      const selectedDateTime = new Date(value).getTime();
+      const currentTime = new Date().getTime();
+  
+      if (selectedDateTime < currentTime) {
+        return;
+      }
+  
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
   return (
     <>
@@ -92,7 +112,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
               >
                 <option>Choose your service ...</option>
                 {providerData.services?.map((ele) => (
-                  <option value={ele.name}>{ele.name}</option>
+                  <option value={JSON.stringify(ele)}>{ele.name}</option>
                 ))}
               </Form.Select>
               {formError && <p className="text-danger m-0">{formError}</p>}
@@ -116,6 +136,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
                 name="dateTime"
                 value={formData.dateTime}
                 onChange={handleInputChange}
+                min={new Date().toISOString().slice(0, 16)}
               />
               {formError && <p className="text-danger m-0">{formError}</p>}
             </Form.Group>

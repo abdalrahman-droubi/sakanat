@@ -1,32 +1,102 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-function SideBarProviders({ providersData, setProvidersData }) {
-//   const [selectedServices, setSelectedServices] = useState([]);
-//   const [selectedCities, setSelectedCities] = useState([]);
-//   const [selectedRatings, setSelectedRatings] = useState([]);
+function SideBarProviders({
+  providersData,
+  setProvidersData,
+  filterProvidersData,
+  setfilterProvidersData,
+}) {
+  const servaicestypeData = [
+    { name: "House Keeping", count: 120 },
+    { name: "Hostel", count: 15 },
+    { name: "Dry Clean", count: 35 },
+    { name: "Maintenance", count: 89 },
+  ];
 
-//   const handleServiceTypeChange = (service) => {
-//     console.log(service);
-//     if (selectedServices.includes(service)) {
-//       setSelectedServices(selectedServices.filter((s) => s !== service));
-//     } else {
-//       setSelectedServices([...selectedServices, service]);
-//     }
-//   };    
-//   const filterProviders = () => {
-//     return providersData.filter((provider) => {
-//       const serviceTypeMatch = selectedServices.length === 0 || selectedServices.includes(provider.serviceType);
-//     //   const cityMatch = selectedCities.length === 0 || selectedCities.includes(provider.city);
-//       // Implement rating filtering logic based on selectedRatings
-  
-//       return serviceTypeMatch ;
-//     });
-//   };
-  
+  const citiesData = [
+    { name: "Amman", count: 120 },
+    { name: "Irbid", count: 15 },
+    { name: "Aqaba", count: 35 },
+    { name: "Zarqa", count: 89 },
+    { name: "Ajloun", count: 89 },
+    { name: "Jerash", count: 89 },
+    { name: "Balqa", count: 89 },
+    { name: "Mafraq", count: 89 },
+    { name: "Madaba", count: 89 },
+    { name: "Karak", count: 89 },
+    { name: "Tafilah", count: 89 },
+    { name: "Ma'an", count: 89 },
+  ];
 
-//   const filteredProviders = filterProviders();
-// setProvidersData(filteredProviders);
+  const ratingsData = [
+    { stars: 5, label: "5 Stars" },
+    { stars: 4, label: "4 Stars" },
+    { stars: 3, label: "3 Stars" },
+    { stars: 2, label: "2 Stars" },
+    { stars: 1, label: "1 Star" },
+  ];
+  const [selectedServices, setSelectedServices] = useState([]);
+  const [selectedCities, setSelectedCities] = useState([]);
+  const [selectedRatings, setSelectedRatings] = useState([]);
 
+  const handleServiceTypeChange = (serviceName) => {
+    if (selectedServices.includes(serviceName)) {
+      setSelectedServices(
+        selectedServices.filter((service) => service !== serviceName)
+      );
+    } else {
+      setSelectedServices([...selectedServices, serviceName]);
+    }
+  };
+
+  const handleCityChange = (cityName) => {
+    if (selectedCities.includes(cityName)) {
+      setSelectedCities(selectedCities.filter((city) => city !== cityName));
+    } else {
+      setSelectedCities([...selectedCities, cityName]);
+    }
+  };
+
+  const handleRatingChange = (rating) => {
+    if (selectedRatings.includes(rating)) {
+      setSelectedRatings(selectedRatings.filter((r) => r !== rating));
+    } else {
+      setSelectedRatings([...selectedRatings, rating]);
+    }
+  };
+
+  const filterProviders = () => {
+    const filteredProviders = providersData.filter((provider) => {
+      // Filter by selected services
+      if (selectedServices.length > 0) {
+        const providerServiceType = provider.serviceType;
+        if (!selectedServices.includes(providerServiceType)) {
+          return false;
+        }
+      }
+
+      // Filter by selected cities
+      if (
+        selectedCities.length > 0 &&
+        !selectedCities.includes(provider.city)
+      ) {
+        return false;
+      }
+
+      // Filter by selected ratings
+      if (selectedRatings.length > 0) {
+        const providerRating = provider.rate;
+        if (!selectedRatings.includes(providerRating)) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    setfilterProvidersData(filteredProviders);
+  };
+  useEffect(() => filterProviders(), [selectedServices, selectedCities,selectedRatings]);
   return (
     <>
       {/* sidebar */}
@@ -69,91 +139,31 @@ function SideBarProviders({ providersData, setProvidersData }) {
               >
                 <div className="accordion-body">
                   <div>
-                    {/* Checked checkbox */}
-                    <div className="form-check">
-                      <input
-                        // defaultValue=""
-                        // defaultChecked=""
-                        className="form-check-input"
-                        type="checkbox"
-                        value="House Keeping"
-                        id="flexCheckChecked1"
-                        // checked={selectedServices.includes("House Keeping")}
-                        // onChange={(e) =>
-                        //   handleServiceTypeChange(e.target.value)
-                        // }
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckChecked1"
-                      >
-                        House Keeping
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        120
-                      </span>
-                    </div>
-                    {/* Checked checkbox */}
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="flexCheckChecked2"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckChecked2"
-                      >
-                        Hostel
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        15
-                      </span>
-                    </div>
-                    {/* Checked checkbox */}
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="flexCheckChecked3"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckChecked3"
-                      >
-                        Dry Clean
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        35
-                      </span>
-                    </div>
-                    {/* Checked checkbox */}
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="flexCheckChecked4"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="flexCheckChecked4"
-                      >
-                        Maintenance
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        89
-                      </span>
-                    </div>
+                    {servaicestypeData.map((service, index) => (
+                      <div className="form-check" key={index}>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value={service.name}
+                          id={`flexCheckChecked${index}`}
+                          checked={selectedServices.includes(service.name)}
+                          onChange={(e) => {
+                            handleServiceTypeChange(e.target.value);
+                          }}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`flexCheckChecked${index}`}
+                        >
+                          {service.name}
+                        </label>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
+            {/* City section */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingTwo">
                 <button
@@ -174,228 +184,33 @@ function SideBarProviders({ providersData, setProvidersData }) {
               >
                 <div className="accordion-body">
                   <div>
-                    {/* Jordanian cities checkboxes */}
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox1"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox1"
-                      >
-                        Amman
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        120
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox2"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox2"
-                      >
-                        Irbid
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        15
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox3"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox3"
-                      >
-                        Aqaba
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        35
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox4"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox4"
-                      >
-                        Zarqa
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        89
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox5"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox5"
-                      >
-                        Ajloun
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        42
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox6"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox6"
-                      >
-                        Jerash
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        18
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox7"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox7"
-                      >
-                        Balqa
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        18
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox8"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox8"
-                      >
-                        Mafraq
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        18
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox9"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox9"
-                      >
-                        Madaba
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        18
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox10"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox10"
-                      >
-                        Karak
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        18
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox11"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox11"
-                      >
-                        Tafilah
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        18
-                      </span>
-                    </div>
-                    <div className="form-check">
-                      <input
-                        className="form-check-input"
-                        type="checkbox"
-                        defaultValue=""
-                        id="cityCheckbox12"
-                        defaultChecked=""
-                      />
-                      <label
-                        className="form-check-label"
-                        htmlFor="cityCheckbox12"
-                      >
-                        Ma'an
-                      </label>
-                      <span className="badge badge-secondary float-end">
-                        18
-                      </span>
-                    </div>
+                    {/* Dynamic city checkboxes */}
+                    {citiesData.map((city, index) => (
+                      <div className="form-check" key={index}>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          value={city.name}
+                          id={`cityCheckbox${index}`}
+                          checked={selectedCities.includes(city.name)}
+                          onChange={(e) => {
+                            handleCityChange(e.target.value);
+                          }}
+                        />
+                        <label
+                          className="form-check-label"
+                          htmlFor={`cityCheckbox${index}`}
+                        >
+                          {city.name}
+                        </label>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
             </div>
 
+            {/* Ratings section */}
             <div className="accordion-item">
               <h2 className="accordion-header" id="headingThree">
                 <button
@@ -415,86 +230,31 @@ function SideBarProviders({ providersData, setProvidersData }) {
                 aria-labelledby="headingThree"
               >
                 <div className="accordion-body">
-                  {/* Default checkbox */}
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                      defaultChecked=""
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                    </label>
-                  </div>
-                  {/* Default checkbox */}
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                      defaultChecked=""
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-secondary" />
-                    </label>
-                  </div>
-                  {/* Default checkbox */}
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                      defaultChecked=""
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-secondary" />
-                      <i className="fas fa-star text-secondary" />
-                    </label>
-                  </div>
-                  {/* Default checkbox */}
-                  <div className="form-check">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      defaultValue=""
-                      id="flexCheckDefault"
-                      defaultChecked=""
-                    />
-                    <label
-                      className="form-check-label"
-                      htmlFor="flexCheckDefault"
-                    >
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-warning" />
-                      <i className="fas fa-star text-secondary" />
-                      <i className="fas fa-star text-secondary" />
-                      <i className="fas fa-star text-secondary" />
-                    </label>
-                  </div>
+                  {ratingsData.map((rating, index) => (
+                    <div className="form-check" key={index}>
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        value={rating.stars}
+                        id={`ratingCheckbox${index}`}
+                        checked={selectedRatings.includes(rating.stars)}
+                        onChange={(e) => {
+                          handleRatingChange(rating.stars);
+                        }}
+                      />
+                      <label
+                        className="form-check-label"
+                        htmlFor={`ratingCheckbox${index}`}
+                      >
+                        {Array.from({ length: rating.stars }, (_, i) => (
+                          <i key={i} className="fas fa-star text-warning" />
+                        ))}
+                        {Array.from({ length: 5 - rating.stars }, (_, i) => (
+                          <i key={i} className="fas fa-star text-secondary" />
+                        ))}
+                      </label>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

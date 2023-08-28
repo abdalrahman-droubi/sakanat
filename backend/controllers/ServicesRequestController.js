@@ -4,7 +4,6 @@ const handleNewRequestServices = async (req, res) => {
   const { providerId, userId } = req.params;
   const { serviceType, email, dateTime, details, phoneNumber, location } =
     req.body;
-    console.log({ serviceType, email, dateTime, details, phoneNumber, location,providerId, userId });
   try {
       const newRequestServices = await ServicesRequest.create({
         serviceType,

@@ -30,7 +30,7 @@ const CompanyImage = ({ companyImage }) => {
           <div className="numbertext">
             {index + 1} / {companyImage?.length}
           </div>
-          <img  src={`http://localhost:5550/${imagePath}`} style={{ width: '100%', height:"250px"}} alt={captions[index]} />
+          <img  src={`http://localhost:5550/${imagePath}`} style={{ maxWidth: '100%'  }} alt={captions[index]} />
         </div>
       ))}
 

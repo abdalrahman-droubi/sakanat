@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 
 const servicesRequestSchema = new mongoose.Schema(
   {
-    serviceType: { type: String, required: true },
+    serviceType: {
+      name: String,
+      price: Number,
+    },
     email: { type: String, required: true },
     dateTime: { type: Date, required: true },
     details: { type: String, required: true },
@@ -16,7 +19,7 @@ const servicesRequestSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["pending", "inprogres", "rejected"],
+      enum: ["pending", "inprogres", "rejected", "completed"],
       default: "pending",
     },
   },

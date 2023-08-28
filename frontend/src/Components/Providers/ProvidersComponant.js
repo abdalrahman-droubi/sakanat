@@ -9,28 +9,53 @@ import Breadcrumb from "../../Layout/Breadcrumb";
 
 function ProvidersComponant() {
   const [providersData, setProvidersData] = useState([]);
+  const [filterProvidersData, setfilterProvidersData] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:5500/api/getProviders")
       .then((response) => {
         console.log(response);
+        setfilterProvidersData(response.data);
         setProvidersData(response.data);
       })
       .catch((error) => {
         console.error("Error fetching providers data:", error);
       });
   }, []);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 2;
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const providersToDisplay = filterProvidersData.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(filterProvidersData.length / itemsPerPage);
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+  };
   return (
     <>
       <section className="mt-5">
         <div className="container">
           <div className="row">
             {/* sidebar */}
-            <SideBarProviders providersData={providersData} setProvidersData={setProvidersData}/>
+            <SideBarProviders
+              providersData={providersData}
+              setProvidersData={setProvidersData}
+              filterProvidersData={filterProvidersData}
+              setfilterProvidersData={setfilterProvidersData}
+            />
             {/* sidebar */}
             <div className="col-lg-9">
               {/* content */}
-              <ProvidersCard providersData={providersData} setProvidersData={setProvidersData}/>
+              <ProvidersCard
+                // key={index}
+                providersData={providersData}
+                setProvidersData={setProvidersData}
+                filterProvidersData={providersToDisplay}
+                allfilterProvidersData={filterProvidersData}
+              />
               {/* content */}
               {/* Pagination */}
               <nav
@@ -38,40 +63,54 @@ function ProvidersComponant() {
                 className="d-flex justify-content-center mt-3"
               >
                 <ul className="pagination">
-                  <li className="page-item disabled">
-                    <a className="page-link" href="#" aria-label="Previous">
+                  <li
+                    className={`page-item me-1 ${
+                      currentPage === 1 ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                    >
                       <span aria-hidden="true">«</span>
-                    </a>
+                    </button>
                   </li>
-                  <li className="page-item active">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      4
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      5
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#" aria-label="Next">
+                  {/* Render the page numbers */}
+                  {Array.from(
+                    {
+                      length: Math.ceil(
+                        filterProvidersData.length / itemsPerPage
+                      ),
+                    },
+                    (_, index) => (
+                      <li
+                        key={index}
+                        className={`page-item me-1 ${
+                          currentPage === index + 1 ? "active" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() => setCurrentPage(index + 1)}
+                        >
+                          {index + 1}
+                        </button>
+                      </li>
+                    )
+                  )}
+                  <li
+                    className={`page-item ${
+                      currentPage === totalPages ? "disabled" : ""
+                    }`}
+                  >
+                    <button
+                      className="page-link"
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                    >
                       <span aria-hidden="true">»</span>
-                    </a>
+                    </button>
                   </li>
                 </ul>
               </nav>
