@@ -51,7 +51,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
       .then((response) => {
         console.log(response);
         if (response.data.success === "New Request created!") {
-            navigate("/userProfile")
+          navigate("/userProfile");
         }
       })
       .catch((error) => {
@@ -62,7 +62,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     if (name === "serviceType") {
-      const selectedService = JSON.parse(value);
+      const selectedService = JSON.parse(value); // Parse the JSON string
       setFormData((prevData) => ({
         ...prevData,
         [name]: selectedService,
@@ -70,11 +70,11 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
     } else if (name === "dateTime") {
       const selectedDateTime = new Date(value).getTime();
       const currentTime = new Date().getTime();
-  
+
       if (selectedDateTime < currentTime) {
         return;
       }
-  
+
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -96,7 +96,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
         {isLoggedIn ? (
           <form
             className="card ps-4 pe-4 pb-4"
-            style={{  height: "fit-content" }}
+            style={{ height: "fit-content" }}
             onSubmit={handleSubmit}
           >
             <h4 className="d-flex justify-content-center mb-3 mt-2">
@@ -107,14 +107,15 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
               <Form.Select
                 aria-label="Default select example"
                 name="serviceType"
-                value={formData.serviceType}
+                value={JSON.stringify(formData.serviceType)}
                 onChange={handleInputChange}
               >
                 <option>Choose your service ...</option>
                 {providerData.services?.map((ele) => (
-                  <option value={JSON.stringify(ele)}>{ele.name}</option>
+                  <option value={JSON.stringify(ele)}> {ele.name}</option>
                 ))}
               </Form.Select>
+
               {formError && <p className="text-danger m-0">{formError}</p>}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -171,7 +172,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
               {formError && <p className="text-danger m-0">{formError}</p>}
             </Form.Group>
             <button
-            style={{backgroundColor:"#F58635", hover:"black"}}
+              style={{ backgroundColor: "#F58635", hover: "black" }}
               type="submit"
               // variant="primary"
               // disabled={isCompanyOpen() === true ? false : true}

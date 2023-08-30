@@ -27,7 +27,7 @@ function ProvidersComponant() {
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 2;
+  const itemsPerPage = 3;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
@@ -96,9 +96,9 @@ function ProvidersComponant() {
                         <button
                           className="page-link"
                           onClick={() => setCurrentPage(index + 1)}
-                          style={{
-                            backgroundColor: "#F58635",
-                          }}
+                          // style={{
+                          //   backgroundColor: "#F58635",
+                          // }}
                         >
                           {index + 1}
                         </button>

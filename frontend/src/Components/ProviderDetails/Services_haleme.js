@@ -146,7 +146,7 @@ const Services_haleme = () => {
                         <tr>
                           <td>{index + 1}</td>
                           <td>{ele.name}</td>
-                          <td>{ele.price}</td>
+                          <td>{ele.price} JD</td>
                         </tr>
                       ))}
                     </tbody>
@@ -156,9 +156,9 @@ const Services_haleme = () => {
             </div>
             <hr />
             <div className="col-12" id="workHours">
-              <h2 className="mb-3">Location & Hours</h2>
+              <h2 className="mb-3">Work Hours</h2>
               <div className="services__Location__Hours ">
-                <div className="col-8">
+                {/* <div className="col-8">
                   <img src={location_img} />
                   <div style={{ color: "skyblue" }}>4721 Geary Blvd</div>
                   <div>San Francisco, CA</div>
@@ -166,21 +166,33 @@ const Services_haleme = () => {
                   <div>Inner Richmond</div>
                   <div style={{ color: "gray" }}>Serving San Francisco</div>
                   <div style={{ color: "gray" }}>Area</div>
-                </div>
-                <div className=" d-flex flex-column justify-content-start align-items-start services__Hours">
-                  {providerData?.workHours &&
-                    Object.keys(providerData?.workHours)
-                      .slice(0, 7)
-                      .map((day) => (
-                        <p className="text-center" key={day}>
-                          <strong>{day} : </strong>{" "}
-                          {providerData.workHours[day].start == "Close" ||
-                          providerData.workHours[day].end == "Close"
-                            ? "Closed"
-                            : `${providerData.workHours[day].start} - ${providerData.workHours[day].end}`}
-                        </p>
-                      ))}
-                  <p className="text-center"></p>
+                </div> */}
+                <div className="  services__Hours">
+                  <>
+                    <div
+                      class="table-responsive"
+                      style={{ width: "100%", margin: "1rem", height: "350px" }}
+                    >
+                      <table class="table table-striped table-hover table-bordered">
+                        <thead>
+                          <tr>
+                            <th>Day</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {Object.keys(providerData?.workHours).slice(0,7).map((day) => (
+                            <tr key={day}>
+                              <td>{day}</td>
+                              <td>{providerData?.workHours[day].start}</td>
+                              <td>{providerData?.workHours[day].end}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
                 </div>
               </div>
             </div>

@@ -173,12 +173,6 @@ export const OrderHistory = () => {
                                   <i className="icofont-headphone-alt" />{" "}
                                   service rating
                                 </span>
-                                <span
-                                  className="btn btn-sm "
-                                  style={{ backgroundColor: "#F58635" }}
-                                >
-                                  <i className="icofont-refresh" /> REORDER
-                                </span>
                               </div>
                             )}
                           </div>

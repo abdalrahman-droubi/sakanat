@@ -79,10 +79,10 @@ function ProvidersCard({ setProvidersData, providersData,filterProvidersData,all
                         <div className="text-warning mb-1 me-2">
                           {generateStarIcons(ele.rate?.rating)}
                           <span className="ms-1">
-                            {ele.rate === 0 ? null : ele.rate?.rating}
+                            {ele.rate === 0 ? null :Number(ele.rate?.rating.toFixed(1))}
                           </span>
                         </div>
-                        <span className="text-muted">154 orders</span>
+                        {/* <span className="text-muted">154 orders</span> */}
                       </div>
                       <p className="text mb-4 mb-md-0">{ele.description}</p>
                     </div>
