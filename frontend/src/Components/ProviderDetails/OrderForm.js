@@ -96,7 +96,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
         {isLoggedIn ? (
           <form
             className="card ps-4 pe-4 pb-4"
-            style={{ backgroundColor: "#00A3E0", height: "fit-content" }}
+            style={{  height: "fit-content" }}
             onSubmit={handleSubmit}
           >
             <h4 className="d-flex justify-content-center mb-3 mt-2">
@@ -170,13 +170,15 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
               />
               {formError && <p className="text-danger m-0">{formError}</p>}
             </Form.Group>
-            <Button
+            <button
+            style={{backgroundColor:"#F58635", hover:"black"}}
               type="submit"
-              variant="primary"
+              // variant="primary"
               // disabled={isCompanyOpen() === true ? false : true}
+              className="btn"
             >
               Request a Service
-            </Button>
+            </button>
           </form>
         ) : (
           <div

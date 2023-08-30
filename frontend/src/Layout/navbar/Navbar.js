@@ -27,7 +27,7 @@ const Navbar = () => {
   useEffect(() => {
     if (pathname === "/") {
       setActiveNAvbar(1);
-    } else if (pathname === "/services") {
+    } else if (pathname === "/Providers") {
       setActiveNAvbar(2);
     } else if (pathname === "/aboutPage") {
       setActiveNAvbar(3);

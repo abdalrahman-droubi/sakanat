@@ -9,6 +9,7 @@ import {
 } from "react-icons/fa";
 import { MdEmail, MdLocationOn } from "react-icons/md";
 import { BsFillTelephoneFill } from "react-icons/bs";
+import Dd from "../AboutPage/About11";
 
 const About = () => {
   return (
@@ -22,7 +23,9 @@ const About = () => {
               </div>
               <div className="col-lg-8 col-md-4">
                 <div className="services">
-                  <h1 className="m-5">About Sakanat</h1>
+                  <h1 className="m-5">
+                    About <span style={{color:"#F58635"}}> Sakanat</span>
+                  </h1>
                   <p className=" m-5 aboutText">
                     In Sakanat, we provide all the services that an expatriate
                     needs in his daily life by connecting people with great
@@ -52,20 +55,20 @@ const About = () => {
                     <div className="col-sm-4 col-6 ">
                       <div className="mt-5 ">
                         <FaMedal className=" ourValueIcon" />
-                        <p className="ourValues">Quality Product</p>
+                        <p className="ourValues" style={{color:"#F58635"}}>Quality Product</p>
                       </div>
                     </div>
 
                     <div className="col-sm-4 col-6">
                       <div className="mt-5">
                         <FaHandHoldingUsd className=" ourValueIcon" />
-                        <p className="ourValues">100% Cash Back</p>
+                        <p className="ourValues"  style={{color:"#F58635"}}>100% Cash Back</p>
                       </div>
                     </div>
                     <div className="col-sm-4 col-6">
                       <div className="mt-5">
                         <FaCarSide className=" ourValueIcon" />
-                        <p className="ourValues"> Free Delivery</p>
+                        <p className="ourValues"  style={{color:"#F58635"}}> Free Delivery</p>
                       </div>
                     </div>
                   </div>
@@ -74,7 +77,9 @@ const About = () => {
             </div>
           </div>
         </section>
-        <section className="ourWorksSection">
+        <Dd />
+
+        {/* <section className="ourWorksSection">
           <div className="container">
             <div className="row">
               <h2 className="ourWorkHeader">Our Works</h2>
@@ -99,7 +104,7 @@ const About = () => {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </div>
 
       {/*-------------------------------- contact section  ----------------------*/}

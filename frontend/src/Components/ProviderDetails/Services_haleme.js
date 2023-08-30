@@ -8,10 +8,12 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import OrderForm from "./OrderForm";
 import CompanyImage from "./CompanyImage";
+import Loader from "../../Pages/Loder";
+import RatingStars from "../UserProfile/RatingStars";
 
 const Services_haleme = () => {
   const { id } = useParams();
-  const [providerData, setProviderData] = useState({});
+  const [providerData, setProviderData] = useState();
   useEffect(() => {
     axios
       .get(`http://localhost:5500/api/getOneProviders/${id}`)
@@ -71,107 +73,130 @@ const Services_haleme = () => {
       targetSection.scrollIntoView({ behavior: "smooth" });
     }
   };
-  return (
+
+  return providerData ? (
     <>
       <div className="row justify-content-between servaices__container">
-          <div className="col-11 col-lg-7 col-md-9">
-            <div className="row">
-              <div className="col-12 services__title">
-                <h1>{providerData?.companyName}</h1>
-                <p className="services__title_description">
-                  {providerData?.description}
-                </p>
-                <p>
-                  <span
-                    className={
-                      isCompanyOpen()
-                        ? "text-success span__1"
-                        : "text-danger span__1"
-                    }
-                  >
-                    {isCompanyOpen() ? "Open" : "Closed"}
-                    {providerData?.workHours?.[getCurrentDay()]?.start ===
-                    "Close"
-                      ? ""
-                      : ` ${
-                          providerData?.workHours?.[getCurrentDay()]?.start
-                        } - ${providerData?.workHours?.[getCurrentDay()]?.end}`}
-                  </span>
-                  <span className="span__2" onClick={scrollToTargetSection}>
-                    See hours
-                  </span>
-                </p>
-              </div>
-              <hr />
-              
-              <div className="col-12">
-                <section className="pt-1 pb-5">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-6">
-                        <h3 className="mb-3">
-                          Related Photos {providerData?.companyImage?.length}
-                        </h3>
-                      </div>
-                      <CompanyImage companyImage={providerData.companyImage} />
+        <div className="col-11 col-lg-7 col-md-9">
+          <div className="row">
+            <div className="col-12 services__title">
+              <h1>{providerData?.companyName}</h1>
+              <p className="services__title_description">
+                {providerData?.description}
+              </p>
+              <p>
+                <span
+                  className={
+                    isCompanyOpen()
+                      ? "text-success span__1"
+                      : "text-danger span__1"
+                  }
+                >
+                  {isCompanyOpen() ? "Open" : "Closed"}
+                  {providerData?.workHours?.[getCurrentDay()]?.start === "Close"
+                    ? ""
+                    : ` ${
+                        providerData?.workHours?.[getCurrentDay()]?.start
+                      } - ${providerData?.workHours?.[getCurrentDay()]?.end}`}
+                </span>
+                <span className="span__2" onClick={scrollToTargetSection}>
+                  See hours
+                </span>
+              </p>
+            </div>
+            <hr />
+
+            <div className="col-12">
+              <section className="pt-1 pb-5">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-6">
+                      <h3 className="mb-3">
+                        Related Photos {providerData?.companyImage?.length}
+                      </h3>
                     </div>
-                  </div>
-                </section>
-              </div>
-              <hr />
-              <div className="col-12 card__services">
-                <div className="row">
-                  <div className="col-12 d-flex  mb-3">
-                    <h3>Company Services</h3>
+                    <CompanyImage companyImage={providerData.companyImage} />
                   </div>
                 </div>
-                <div className="row gap-5 justify-content-center">
-                  {providerData?.services?.map((ele) => (
-                    <div className="col-4 card__shopes text-center">
-                      <img src={Test_img} alt="" />
-                      <h1 className="text-center">{ele.name}</h1>
-                      <p className="text-center mt-2">{ele.price}</p>
-                    </div>
-                  ))}
+              </section>
+            </div>
+            <hr />
+            <div className="col-12 card__services">
+              <div className="row">
+                <div className="col-12 d-flex  mb-3">
+                  <h3>Company Services</h3>
                 </div>
               </div>
-              <hr />
-              <div className="col-12" id="workHours">
-                <h2 className="mb-3">Location & Hours</h2>
-                <div className="services__Location__Hours ">
-                  <div className="col-8">
-                    <img src={location_img} />
-                    <div style={{ color: "skyblue" }}>4721 Geary Blvd</div>
-                    <div>San Francisco, CA</div>
-                    <div>94118</div>
-                    <div>Inner Richmond</div>
-                    <div style={{ color: "gray" }}>Serving San Francisco</div>
-                    <div style={{ color: "gray" }}>Area</div>
-                  </div>
-                  <div className=" d-flex flex-column justify-content-start align-items-start services__Hours">
-                    {providerData?.workHours &&
-                      Object.keys(providerData?.workHours)
-                        .slice(0, 7)
-                        .map((day) => (
-                          <p className="text-center" key={day}>
-                            <strong>{day} : </strong>{" "}
-                            {providerData.workHours[day].start == "Close" ||
-                            providerData.workHours[day].end == "Close"
-                              ? "Closed"
-                              : `${providerData.workHours[day].start} - ${providerData.workHours[day].end}`}
-                          </p>
-                        ))}
-                    <p className="text-center"></p>
-                  </div>
+              <div className="row gap-5 justify-content-center"></div>
+              <>
+                <div
+                  class="table-responsive"
+                  style={{ width: "50rem", margin: "1rem", height: "300px" }}
+                >
+                  <table class="table table-striped table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Num</th>
+                        <th>Name </th>
+                        <th>price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {providerData?.services?.map((ele, index) => (
+                        <tr>
+                          <td>{index + 1}</td>
+                          <td>{ele.name}</td>
+                          <td>{ele.price}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </>
+            </div>
+            <hr />
+            <div className="col-12" id="workHours">
+              <h2 className="mb-3">Location & Hours</h2>
+              <div className="services__Location__Hours ">
+                <div className="col-8">
+                  <img src={location_img} />
+                  <div style={{ color: "skyblue" }}>4721 Geary Blvd</div>
+                  <div>San Francisco, CA</div>
+                  <div>94118</div>
+                  <div>Inner Richmond</div>
+                  <div style={{ color: "gray" }}>Serving San Francisco</div>
+                  <div style={{ color: "gray" }}>Area</div>
+                </div>
+                <div className=" d-flex flex-column justify-content-start align-items-start services__Hours">
+                  {providerData?.workHours &&
+                    Object.keys(providerData?.workHours)
+                      .slice(0, 7)
+                      .map((day) => (
+                        <p className="text-center" key={day}>
+                          <strong>{day} : </strong>{" "}
+                          {providerData.workHours[day].start == "Close" ||
+                          providerData.workHours[day].end == "Close"
+                            ? "Closed"
+                            : `${providerData.workHours[day].start} - ${providerData.workHours[day].end}`}
+                        </p>
+                      ))}
+                  <p className="text-center"></p>
                 </div>
               </div>
             </div>
           </div>
-          {/* -------------------------------------Form ----------------------------------------------------- */}
-          <OrderForm isCompanyOpen={isCompanyOpen} companyId={id} providerData={providerData} />
-          {/* -------------------------------------Form ----------------------------------------------------- */}
+        </div>
+        {/* -------------------------------------Form ----------------------------------------------------- */}
+        <OrderForm
+          isCompanyOpen={isCompanyOpen}
+          companyId={id}
+          providerData={providerData}
+        />
+        {/* -------------------------------------Form ----------------------------------------------------- */}
       </div>
     </>
+  ) : (
+    <Loader />
   );
 };
 

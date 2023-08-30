@@ -1,68 +1,58 @@
 import React, { useState } from "react";
 import "./CompanyImage.css"; // You can define your own CSS styles
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
 
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+
+// import './styles.css';
+
+// import required modules
+import { FreeMode, Pagination } from "swiper/modules";
 const CompanyImage = ({ companyImage }) => {
-    const [slideIndex, setSlideIndex] = useState(0);
+  // const [slideIndex, setSlideIndex] = useState(0);
 
-    const captions = [
-      'Caption 1',
-      'Caption 2',
-      'Caption 3' // Add more captions if needed
-    ];
-  
-    const plusSlides = (n) => {
-      setSlideIndex((prevIndex) => (prevIndex + n + companyImage?.length) % companyImage?.length);
-    };
-  
-    const currentSlide = (n) => {
-      setSlideIndex(n);
-    };
-  
+  // const captions = [
+  //   'Caption 1',
+  //   'Caption 2',
+  //   'Caption 3' // Add more captions if needed
+  // ];
+
+  // const plusSlides = (n) => {
+  //   setSlideIndex((prevIndex) => (prevIndex + n + companyImage?.length) % companyImage?.length);
+  // };
+
+  // const currentSlide = (n) => {
+  //   setSlideIndex(n);
+  // };
+console.log(companyImage);
   return (
     <>
-      <>
-      <div className="container">
-      {companyImage?.map((imagePath, index) => (
-          <div
-          key={index}
-          className={`mySlides ${slideIndex === index ? 'active' : ''}`}
-          > 
-          <div className="numbertext">
-            {index + 1} / {companyImage?.length}
-          </div>
-          <img  src={`http://localhost:5550/${imagePath}`} style={{ maxWidth: '100%'  }} alt={captions[index]} />
-        </div>
-      ))}
-
-      <a className="prev" onClick={() => plusSlides(-1)}>
-        &#10094;
-      </a>
-      <a className="next" onClick={() => plusSlides(1)}>
-        &#10095;
-      </a>
-
-      <div className="caption-container">
-        {/* <p id="caption">{captions[slideIndex]}</p> */}
-      </div>
-
-      <div className="row pt-1">
-        {companyImage?.map((imagePath, index) => (
-          <div
-            key={index}
-            className={`column ${slideIndex === index ? 'active' : ''}`}
-          >
+      <div style={{width:"70rem"}}>
+        <Swiper
+          slidesPerView={3}
+          spaceBetween={30}
+          freeMode={true}
+          pagination={{
+            clickable: true,
+          }}
+          modules={[FreeMode, Pagination]}
+          className="mySwiper"
+        >
+        {companyImage?.map((imagePath)=>
+          <SwiperSlide>
             <img
-              className="demo cursor"
               src={`http://localhost:5550/${imagePath}`}
-              style={{ width: '100%' }}
-              onClick={() => currentSlide(index)}
-              alt={captions[index]}
+              alt=""
+              style={{ height: "400px" ,width:"full"}}
             />
-          </div>
-        ))}
+          </SwiperSlide>
+          )}
+        </Swiper>
       </div>
-    </div>
-      </>
     </>
   );
 };

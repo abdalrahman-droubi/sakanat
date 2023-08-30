@@ -6,6 +6,7 @@ import SideBarProviders from "./SideBarProviders";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Breadcrumb from "../../Layout/Breadcrumb";
+import Loader from "../../Pages/Loder";
 
 function ProvidersComponant() {
   const [providersData, setProvidersData] = useState([]);
@@ -35,6 +36,7 @@ function ProvidersComponant() {
     setCurrentPage(newPage);
   };
   return (
+    providersData.length !==0 ?
     <>
       <section className="mt-5">
         <div className="container">
@@ -120,6 +122,7 @@ function ProvidersComponant() {
         </div>
       </section>
     </>
+    :<Loader/>
 
     // <div className="provider">
     //   <div className="title">

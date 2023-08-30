@@ -1,131 +1,109 @@
 import React from "react";
 import { motion } from "framer-motion";
 import "./contact.css";
-import  { useRef } from 'react';
+import { useRef } from "react";
 // import emailjs from '@emailjs/browser';
-
 
 const Contact = () => {
   const form = useRef();
 
   const sendEmail = (e) => {
     // e.preventDefault();
-
     // emailjs.sendForm('service_w486woi', 'template_wqlf8vs', form.current, 'FclbcymguVw3zh1fbz`z ')
-      // .then((result) => {
-      //     console.log(result.text);
-      // }, (error) => {
-      //     console.log(error.text);
-      // });
+    // .then((result) => {
+    //     console.log(result.text);
+    // }, (error) => {
+    //     console.log(error.text);
+    // });
   };
   return (
-    <div className="contact__form container-fluid">
-      <div className=" row justify-content-center mt-5">
-        <div className=" col-xl-10">
-          <div className="card border-0 rounded-3 shadow-lg overflow-hidden">
-            <div className="card-body p-0">
-              <div className="row g-0">
-                <div className="col-sm-6 d-none d-sm-block bg-image"></div>
-                <div className="col-sm-6 p-4">
-                  <div className="text-center">
-                    <div className="h3 fw-light mb-4">Contact Form</div>
-                  </div>
-                  <form id="contactForm" data-sb-form-api-token="API_TOKEN" ref={form} onSubmit={sendEmail}>
-                    <div className="form-floating mb-3">
-                      <input
-                        className="form-control"
-                        id="name"
-                        type="text"
-                        placeholder="Name"
-                        data-sb-validations="required"
-                         name="from_name"
-                      />
-                      <label htmlFor="name">Name</label>
-                      <div
-                        className="invalid-feedback"
-                        data-sb-feedback="name:required"
-                      >
-                        Name is required.
-                      </div>
-                    </div>
-
-                    <div className="form-floating mb-3">
-                      <input
-                        className="form-control"
-                        id="emailAddress"
-                       
-                        placeholder="Email Address"
-                        data-sb-validations="required,email"
-                        type="email" name="user_email"
-                      />
-                      <label htmlFor="emailAddress">Email Address</label>
-                      <div
-                        className="invalid-feedback"
-                        data-sb-feedback="emailAddress:required"
-                      >
-                        Email Address is required.
-                      </div>
-                      <div
-                        className="invalid-feedback"
-                        data-sb-feedback="emailAddress:email"
-                      >
-                        Email Address Email is not valid.
-                      </div>
-                    </div>
-
-                    <div className="form-floating mb-3">
-                      <textarea
-                        className="form-control"
-                        id="message"
-                        type="text"
-                        placeholder="Message"
-                        data-sb-validations="required"
-                        name="message"
-                      ></textarea>
-                      <label htmlFor="message">Message</label>
-                      <div
-                        className="invalid-feedback"
-                        data-sb-feedback="message:required"
-                      >
-                        Message is required.
-                      </div>
-                    </div>
-
-                    <div className="d-none" id="submitSuccessMessage">
-                      <div className="text-center mb-3">
-                        <div className="fw-bolder">Form submission successful!</div>
-                        <p>To activate this form, sign up at</p>
-                        <a href="https://startbootstrap.com/solution/contact-forms">
-                          https://startbootstrap.com/solution/contact-forms
-                        </a>
-                      </div>
-                    </div>
-
-                    <div className="d-none" id="submitErrorMessage">
-                      <div className="text-center text-danger mb-3">
-                        Error sending message!
-                      </div>
-                    </div>
-
-                    <div className="d-grid">
-                      <motion.button
-                        whileHover={{ scale: 0.97 }}
-                        className="btn submit-b btn-lg "
-                        id="submitButton"
-                        type="submit"
-                         value="Submit"
-                      >
-                        Submit
-                      </motion.button>
-                    </div>
-                  </form>
-                </div>
+    <>
+      <div className="contact111 bg-background" />
+      <div className="contact111 container pb-5 mb-5">
+        <div className="contact111 row py-5 g-3">
+          <div className="col-md-6 first_col ">
+            <h1 className="text-center mt-3">Contact Us</h1>
+            <form className="p-4 mt-5">
+              <div className="mb-3">
+                <label
+                  htmlFor="exampleFormControlInput1"
+                  className="form-label"
+                >
+                  Enter your Name
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="exampleFormControlInput1"
+                />
               </div>
+              <div className="mb-3">
+                <label
+                  htmlFor="exampleFormControlInput1"
+                  className="form-label"
+                >
+                  Email ID
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="exampleFormControlInput1"
+                />
+              </div>
+              <div className="mb-3">
+                <label
+                  htmlFor="exampleFormControlTextarea1"
+                  className="form-label"
+                >
+                  Enter your massage
+                </label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  id="exampleFormControlTextarea1"
+                  rows={3}
+                  defaultValue={""}
+                />
+              </div>
+              <div className="mb-3">
+                <button className="btn btn-primary">Send Now</button>
+              </div>
+            </form>
+          </div>
+          <div className="col-md-6 sec_col">
+            <img
+              src="https://images.unsplash.com/photo-1563906267088-b029e7101114?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGNvbnRhY3R8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60"
+              className="img-fluid"
+            />
+          </div>
+        </div>
+        <div className="contact111 row-last">
+          <div className="row row-cols-1 row-cols-md-3  p-3 text-white">
+            <div className="col">
+              <h4>CALL US</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt, doloribus!
+              </p>
+            </div>
+            <div className="col">
+              <h4>LOCATION</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt, doloribus!
+              </p>
+            </div>
+            <div className="col">
+              <h4>Email</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt, doloribus!
+              </p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

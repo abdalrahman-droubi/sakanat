@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../../context/userDataContext";
 import axios from "axios";
+import RatingStars from "./RatingStars";
 
 export const OrderHistory = () => {
   const { user } = useContext(UserDataContext);
   const [requestServices, setrequestServices] = useState([]);
+  const [showRating, setShowRating] = useState(false);
+  const [showRatingindex, setShowRatingCard] = useState();
   useEffect(() => {
     axios
       .get(`http://localhost:5500/api/getAllRequest/${user._id}`)
@@ -16,6 +19,15 @@ export const OrderHistory = () => {
         console.error("Error fetching OrderHistory data:", error);
       });
   }, [user._id]);
+  const [rating, setRating] = useState(0);
+
+  const handleRatingChange = (newRating) => {
+    setRating(newRating);
+  };
+  const handleSubmitRating = (index) => {
+    setShowRating(false);
+    console.log(rating);
+  };
   return (
     <>
       <div className="osahan-account-page-right shadow-sm bg-white p-4 h-100">
@@ -27,7 +39,7 @@ export const OrderHistory = () => {
             aria-labelledby="orders-tab"
           >
             <h4 className="font-weight-bold mt-0 mb-4">Past Orders</h4>
-            {requestServices?.map((ele) => {
+            {requestServices?.map((ele, index) => {
               const createdAtDate = new Date(ele.createdAt);
               const requestedOn =
                 createdAtDate.toDateString() +
@@ -40,7 +52,10 @@ export const OrderHistory = () => {
                 ", " +
                 dateTimeDate.toLocaleTimeString();
               return (
-                <div className="bg-white card mb-4 order-list shadow-sm">
+                <div
+                  className="bg-white card mb-4 order-list shadow-sm"
+                  key={index}
+                >
                   <div className="gold-members p-4">
                     <div className="media">
                       <div className="media-body">
@@ -83,9 +98,7 @@ export const OrderHistory = () => {
                           <div>
                             <p className=" mb-1">
                               <strong>company Location : </strong>
-                              <span
-                                className="text-gray mb-1"
-                              >
+                              <span className="text-gray mb-1">
                                 {ele.provider.city}
                               </span>
                             </p>
@@ -125,16 +138,42 @@ export const OrderHistory = () => {
                         <hr />
                         <div className="d-flex justify-content-between">
                           <div className="d-flex gap-1 order-2">
-                            <a className="btn btn-sm btn-outline-dark" href="#">
-                              <i className="icofont-headphone-alt" /> HELP
-                            </a>
-                            <a
-                              className="btn btn-sm "
-                              style={{ backgroundColor: "#F58635" }}
-                              href="#"
-                            >
-                              <i className="icofont-refresh" /> REORDER
-                            </a>
+                            {showRating === true && showRatingindex === index && (
+                              <div>
+                                <RatingStars
+                                  totalStars={5}
+                                  initialRating={rating}
+                                  onRatingChange={handleRatingChange}
+                                />
+                                <button
+                                  onClick={() => handleSubmitRating(index)}
+                                  className="btn btn-sm "
+                                  style={{ backgroundColor: "#F58635" }}
+                                >
+                                  submit rating
+                                </button>
+                              </div>
+                            )}
+                            {(showRating === false || showRating === true )  && showRatingindex !== index && (
+                              <div className="d-flex gap-1 order-2">
+                                <span
+                                  className="btn btn-sm btn-outline-dark"
+                                  onClick={() => {
+                                    setShowRating(true);
+                                    setShowRatingCard(index);
+                                  }}
+                                >
+                                  <i className="icofont-headphone-alt" />{" "}
+                                  service rating
+                                </span>
+                                <span
+                                  className="btn btn-sm "
+                                  style={{ backgroundColor: "#F58635" }}
+                                >
+                                  <i className="icofont-refresh" /> REORDER
+                                </span>
+                              </div>
+                            )}
                           </div>
                           <p className="mb-0 text-black text-primary pt-2 order-1">
                             <b className="text-black font-weight-bold">

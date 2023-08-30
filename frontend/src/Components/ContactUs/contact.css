@@ -1,22 +1,62 @@
-.contact__form {
-    background: linear-gradient(to right, #00A3E0, #fff);
-    height: 700px;
-    padding-top: 5rem;
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+body{
+    /* font-family: 'Poppins', sans-serif; */
+    /* background-color: #f8f9fa ; */
 }
-
-.contact__form form {
-    margin-top: 3rem;
+.contact111 .first_col {
+    background-color: white;
+    height: 550px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
+    width: 550px;
+    left: 155px;
+    top: 171px;
+    border-radius: 20px;
 }
-
-.bg-image {
-    background-image: url(../../Assets/images/12982910_5124556.jpg);
-    background-size: 75%;
-    background-position: center;
-    background-repeat: no-repeat;
+.contact111 .img-fluid {
+    border-radius: 20px;
 }
-
-.contact__form .submit-b {
-    background-color: #00A3E0;
-    color: white;
+.contact111 .row-last {
+    width: 60% !important;
+    position: relative !important;
+    left: 350px;
+    top: 50px;
+    height: 200px;
+    padding-bottom: 100px !important;
+    background-color: #F58635;
+    border-radius: 20px;
+}
+.contact111 .btn-primary {
+    background-color: #F58635;
+    border: #F58635;
+}
+.contact111 .btn-primary:hover {
+    background-color: black !important;
+}
+.contact111 .form-control {
+    height: 52px;
+    background: #fff;
+    font-size: 14px;
+    border-radius: 2px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #F58635;
+}
+.contact111 .form-control[type=text]:focus {
+border: 2px solid #555;
+}
+@media only screen and (max-width: 600px) {
+    .contact111 .first_col {
+        position: initial;
+        left: 0 !important;
+    }
+    .contact111  .sec_col {
+        order: 1 !important;
+    }
+    .contact111  .row-last {
+        left: 0 !important;
+        width: 100% !important;
+        height: 500px !important;
+        top: 0 !important;
+    }
 }
