@@ -5,7 +5,6 @@ import imgSec from "../../Assets/images/about-us-img.jpg";
 function WelcomeSection() {
   return (
     <>
-      {/* About Start */}
       <div className="container-xxl pb-5 welcomSection">
         <div className="container">
           <div className="row g-5">
@@ -14,12 +13,12 @@ function WelcomeSection() {
               data-wow-delay="0.1s"
               style={{ minHeight: 400 }}
             >
-              <div className="position-relative h-100 ">
+              <div className="position-relative h-100">
                 <img
-                  className="img-fluid position-absolute w-100 h-100 "
+                  className="img-fluid position-absolute w-100 h-100"
                   src="https://images.pexels.com/photos/4153155/pexels-photo-4153155.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt=""
-                  style={{ objectFit: "cover" }}
+                  style={{ objectFit: "cover", borderRadius: "10px" }}
                 />
               </div>
             </div>
@@ -31,13 +30,13 @@ function WelcomeSection() {
                 Welcome to <span style={{ color: "#F58635" }}> SAKANAT </span>
               </h1>
               <p className="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit.
-              </p>
-              <p className="mb-4">
-                Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit.
-                Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit,
-                sed stet lorem sit clita duo justo magna dolore erat amet
+                "Welcome to our expat-centric platform, offering specialized
+                services for expatriates worldwide. From meticulous dry cleaning
+                that pampers your wardrobe to comprehensive general maintenance,
+                we simplify life abroad. Our dedicated team ensures your
+                convenience and comfort, addressing everyday challenges.
+                Seamlessly managing your needs, we make your expat journey
+                smoother and more enjoyable."
               </p>
               <div className="row gy-2 gx-4 mb-4">
                 <div className="col-sm-6">
@@ -45,7 +44,7 @@ function WelcomeSection() {
                     <span style={{ color: "#F58635" }}>
                       <BsArrowRightShort className="arrowIconWelcom" />
                     </span>
-                    Skilled Inst cructors
+                    Tailored Dry Cleaning{" "}
                   </p>
                 </div>
                 <div className="col-sm-6">
@@ -53,7 +52,7 @@ function WelcomeSection() {
                     <span style={{ color: "#F58635" }}>
                       <BsArrowRightShort className="arrowIconWelcom" />
                     </span>{" "}
-                    Online Classes
+                    Comprehensive Maintenance{" "}
                   </p>
                 </div>
                 <div className="col-sm-6">
@@ -61,7 +60,7 @@ function WelcomeSection() {
                     <span style={{ color: "#F58635" }}>
                       <BsArrowRightShort className="arrowIconWelcom" />
                     </span>{" "}
-                    International Certificate
+                    Expat-Centric Services{" "}
                   </p>
                 </div>
                 <div className="col-sm-6">
@@ -69,7 +68,7 @@ function WelcomeSection() {
                     <span style={{ color: "#F58635" }}>
                       <BsArrowRightShort className="arrowIconWelcom" />
                     </span>{" "}
-                    Skilled Instructors
+                    Convenient Booking{" "}
                   </p>
                 </div>
                 <div className="col-sm-6">
@@ -77,7 +76,7 @@ function WelcomeSection() {
                     <span style={{ color: "#F58635" }}>
                       <BsArrowRightShort className="arrowIconWelcom" />
                     </span>{" "}
-                    Online Classes
+                    Cultural Workshops{" "}
                   </p>
                 </div>
                 <div className="col-sm-6">
@@ -85,7 +84,7 @@ function WelcomeSection() {
                     <span style={{ color: "#F58635" }}>
                       <BsArrowRightShort className="arrowIconWelcom" />
                     </span>{" "}
-                    International Certificate
+                    Language Assistance{" "}
                   </p>
                 </div>
               </div>

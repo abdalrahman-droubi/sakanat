@@ -9,6 +9,7 @@ import {
 } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const Footer = () => {
+  const year = new Date().getFullYear();
   return (
     <>
      
@@ -84,7 +85,7 @@ const Footer = () => {
             <div className="col-md-6 col-sm-6 col-xs-6">
               <div className="pull-left">
                 <p>
-                  <AiOutlineCopyrightCircle /> 2023 Cozy
+                <AiOutlineCopyrightCircle /> {year} SAKANAT
                 </p>
               </div>
             </div>

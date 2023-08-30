@@ -46,15 +46,7 @@ function ProvidersCard({ setProvidersData, providersData,filterProvidersData,all
       <header className="d-sm-flex align-items-center border-bottom mb-4 pb-3">
         <strong className="d-block py-2">
           {allfilterProvidersData.length} Providers found{" "}
-        </strong>
-        <div className="ms-auto">
-          <select className="form-select d-inline-block w-auto border pt-1">
-            <option value={0}>Best match</option>
-            <option value={1}>Recommended</option>
-            <option value={2}>High rated</option>
-            <option value={3}>Randomly</option>
-          </select>
-        </div>
+        </strong> 
       </header>
       <div>
         {filterProvidersData.map((ele) => (
@@ -85,9 +77,9 @@ function ProvidersCard({ setProvidersData, providersData,filterProvidersData,all
                       <h3>{ele.companyName}</h3>
                       <div className="d-flex flex-row">
                         <div className="text-warning mb-1 me-2">
-                          {generateStarIcons(ele.rate)}
+                          {generateStarIcons(ele.rate?.rating)}
                           <span className="ms-1">
-                            {ele.rate === 0 ? null : ele.rate}
+                            {ele.rate === 0 ? null : ele.rate?.rating}
                           </span>
                         </div>
                         <span className="text-muted">154 orders</span>
@@ -113,6 +105,10 @@ function ProvidersCard({ setProvidersData, providersData,filterProvidersData,all
                           <button
                             className="btn btn-primary shadow-0"
                             type="button"
+                            style={{
+                              backgroundColor: "#F58635",
+                              border:"none"
+                            }}
                           >
                             View Services
                           </button>

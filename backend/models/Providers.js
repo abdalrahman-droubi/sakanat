@@ -92,6 +92,7 @@ const ProviderSchema = new mongoose.Schema(
           default: 0,
         },
       },
+      default: { rating: 0, numRating: 0 },
     },
   },
   {

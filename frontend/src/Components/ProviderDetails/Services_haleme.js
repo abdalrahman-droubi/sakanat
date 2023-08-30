@@ -131,7 +131,7 @@ const Services_haleme = () => {
               <>
                 <div
                   class="table-responsive"
-                  style={{ width: "50rem", margin: "1rem", height: "300px" }}
+                  style={{ width: "auto", margin: "1rem", height: "300px" }}
                 >
                   <table class="table table-striped table-hover table-bordered">
                     <thead>

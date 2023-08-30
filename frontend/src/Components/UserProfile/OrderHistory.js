@@ -8,6 +8,7 @@ export const OrderHistory = () => {
   const [requestServices, setrequestServices] = useState([]);
   const [showRating, setShowRating] = useState(false);
   const [showRatingindex, setShowRatingCard] = useState();
+  const [rating, setRating] = useState(0);
   useEffect(() => {
     axios
       .get(`http://localhost:5500/api/getAllRequest/${user._id}`)
@@ -19,14 +20,20 @@ export const OrderHistory = () => {
         console.error("Error fetching OrderHistory data:", error);
       });
   }, [user._id]);
-  const [rating, setRating] = useState(0);
 
   const handleRatingChange = (newRating) => {
     setRating(newRating);
   };
-  const handleSubmitRating = (index) => {
+  const handleSubmitRating = (companyId) => {
+    axios
+    .put(`http://localhost:5500/api/updateProvidrRating/${companyId}`,{rating})
+    .then((response) => {
+      console.log(response.data);;
+    })
+    .catch((error) => {
+      console.error("Error update rating data:", error);
+    });
     setShowRating(false);
-    console.log(rating);
   };
   return (
     <>
@@ -38,7 +45,7 @@ export const OrderHistory = () => {
             role="tabpanel"
             aria-labelledby="orders-tab"
           >
-            <h4 className="font-weight-bold mt-0 mb-4">Past Orders</h4>
+            <h4 className="font-weight-bold mt-0 mb-4"> Orders</h4>
             {requestServices?.map((ele, index) => {
               const createdAtDate = new Date(ele.createdAt);
               const requestedOn =
@@ -146,7 +153,7 @@ export const OrderHistory = () => {
                                   onRatingChange={handleRatingChange}
                                 />
                                 <button
-                                  onClick={() => handleSubmitRating(index)}
+                                  onClick={() => handleSubmitRating(ele.provider._id)}
                                   className="btn btn-sm "
                                   style={{ backgroundColor: "#F58635" }}
                                 >

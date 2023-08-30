@@ -11,6 +11,7 @@ import Loader from "../../Pages/Loder";
 function ProvidersComponant() {
   const [providersData, setProvidersData] = useState([]);
   const [filterProvidersData, setfilterProvidersData] = useState([]);
+  const [loder, setLoder] = useState(false);
   useEffect(() => {
     axios
       .get("http://localhost:5500/api/getProviders")
@@ -18,6 +19,7 @@ function ProvidersComponant() {
         console.log(response);
         setfilterProvidersData(response.data);
         setProvidersData(response.data);
+        setLoder(true)
       })
       .catch((error) => {
         console.error("Error fetching providers data:", error);
@@ -35,8 +37,7 @@ function ProvidersComponant() {
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
   };
-  return (
-    providersData.length !==0 ?
+  return loder ? (
     <>
       <section className="mt-5">
         <div className="container">
@@ -95,6 +96,9 @@ function ProvidersComponant() {
                         <button
                           className="page-link"
                           onClick={() => setCurrentPage(index + 1)}
+                          style={{
+                            backgroundColor: "#F58635",
+                          }}
                         >
                           {index + 1}
                         </button>
@@ -122,75 +126,76 @@ function ProvidersComponant() {
         </div>
       </section>
     </>
-    :<Loader/>
-
-    // <div className="provider">
-    //   <div className="title">
-    //     <h2>{serviceType.toLowerCase()} in {location.toLowerCase()}</h2>
-    //     <hr style={{ height: 1, backgroundColor: "black" }} />
-    //   </div>
-    //   <div className="company">
-    //     <img src={imgCompany} alt="" />
-    //     <div className="text">
-    //       <h4>DryClean Lab - دراي كلين لاب</h4>
-    //       <p>
-    //         DryClean Lab is a professional dry-cleaning shop that provides
-    //         high-quality cleaning services for clothing, linens, and other
-    //         textiles. The shop is equipped with the latest cleaning technology
-    //         and uses environmentally-friendly cleaning solvents to ensure that
-    //         each item is cleaned thoroughly and safely.
-    //       </p>
-    //       <p style={{ color: "green", fontSize: "large", fontWeight: "bold" }}>
-    //         open
-    //       </p>
-    //     </div>
-    //     <button>
-    //       <a to="">View Services</a>
-    //     </button>
-    //   </div>
-    //   <hr style={{ height: 1, margin: 0, backgroundColor: "black" }} />
-    //   <div className="company">
-    //     <img src="../images/drycleen shop.jpg" alt="" />
-    //     <div className="text">
-    //       <h4>DryClean Lab - دراي كلين لاب</h4>
-    //       <p>
-    //         DryClean Lab is a professional dry-cleaning shop that provides
-    //         high-quality cleaning services for clothing, linens, and other
-    //         textiles. The shop is equipped with the latest cleaning technology
-    //         and uses environmentally-friendly cleaning solvents to ensure that
-    //         each item is cleaned thoroughly and safely.
-    //       </p>
-    //       <p style={{ color: "green", fontSize: "large", fontWeight: "bold" }}>
-    //         open
-    //       </p>
-    //     </div>
-    //     <button>
-    //       <a to="">View Services</a>
-    //     </button>
-    //   </div>
-    //   <hr style={{ height: 1, margin: 0, backgroundColor: "black" }} />
-    //   <div className="company">
-    //     <img src="../images/drycleen shop.jpg" alt="" />
-    //     <div className="text">
-    //       <h4>DryClean Lab - دراي كلين لاب</h4>
-    //       <p>
-    //         DryClean Lab is a professional dry-cleaning shop that provides
-    //         high-quality cleaning services for clothing, linens, and other
-    //         textiles. The shop is equipped with the latest cleaning technology
-    //         and uses environmentally-friendly cleaning solvents to ensure that
-    //         each item is cleaned thoroughly and safely.
-    //       </p>
-    //       <p style={{ color: "red", fontSize: "large", fontWeight: "bold" }}>
-    //         close
-    //       </p>
-    //     </div>
-    //     <button>
-    //       <Link to="">View Services</Link>
-    //     </button>
-    //   </div>
-    //   <hr style={{ height: 1, margin: 0, backgroundColor: "black" }} />
-    // </div>
+  ) : (
+    <Loader />
   );
+
+  // <div className="provider">
+  //   <div className="title">
+  //     <h2>{serviceType.toLowerCase()} in {location.toLowerCase()}</h2>
+  //     <hr style={{ height: 1, backgroundColor: "black" }} />
+  //   </div>
+  //   <div className="company">
+  //     <img src={imgCompany} alt="" />
+  //     <div className="text">
+  //       <h4>DryClean Lab - دراي كلين لاب</h4>
+  //       <p>
+  //         DryClean Lab is a professional dry-cleaning shop that provides
+  //         high-quality cleaning services for clothing, linens, and other
+  //         textiles. The shop is equipped with the latest cleaning technology
+  //         and uses environmentally-friendly cleaning solvents to ensure that
+  //         each item is cleaned thoroughly and safely.
+  //       </p>
+  //       <p style={{ color: "green", fontSize: "large", fontWeight: "bold" }}>
+  //         open
+  //       </p>
+  //     </div>
+  //     <button>
+  //       <a to="">View Services</a>
+  //     </button>
+  //   </div>
+  //   <hr style={{ height: 1, margin: 0, backgroundColor: "black" }} />
+  //   <div className="company">
+  //     <img src="../images/drycleen shop.jpg" alt="" />
+  //     <div className="text">
+  //       <h4>DryClean Lab - دراي كلين لاب</h4>
+  //       <p>
+  //         DryClean Lab is a professional dry-cleaning shop that provides
+  //         high-quality cleaning services for clothing, linens, and other
+  //         textiles. The shop is equipped with the latest cleaning technology
+  //         and uses environmentally-friendly cleaning solvents to ensure that
+  //         each item is cleaned thoroughly and safely.
+  //       </p>
+  //       <p style={{ color: "green", fontSize: "large", fontWeight: "bold" }}>
+  //         open
+  //       </p>
+  //     </div>
+  //     <button>
+  //       <a to="">View Services</a>
+  //     </button>
+  //   </div>
+  //   <hr style={{ height: 1, margin: 0, backgroundColor: "black" }} />
+  //   <div className="company">
+  //     <img src="../images/drycleen shop.jpg" alt="" />
+  //     <div className="text">
+  //       <h4>DryClean Lab - دراي كلين لاب</h4>
+  //       <p>
+  //         DryClean Lab is a professional dry-cleaning shop that provides
+  //         high-quality cleaning services for clothing, linens, and other
+  //         textiles. The shop is equipped with the latest cleaning technology
+  //         and uses environmentally-friendly cleaning solvents to ensure that
+  //         each item is cleaned thoroughly and safely.
+  //       </p>
+  //       <p style={{ color: "red", fontSize: "large", fontWeight: "bold" }}>
+  //         close
+  //       </p>
+  //     </div>
+  //     <button>
+  //       <Link to="">View Services</Link>
+  //     </button>
+  //   </div>
+  //   <hr style={{ height: 1, margin: 0, backgroundColor: "black" }} />
+  // </div>
 }
 
 export default ProvidersComponant;

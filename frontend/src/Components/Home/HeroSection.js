@@ -17,25 +17,24 @@ function HeroSection() {
         />
         <div className="carousel-caption d-flex h-100 align-items-center justify-content-center">
           <div className="text-center">
-            <div className="  bg-opacity-50 bg-black">
+            <div className="  bg-opacity-50 bg-black m-5">
               <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl text-white">
-                Save Nature with Us
+                Simplifying life abroad, one service at a time.
               </h1>
               <p className="lead mb-12 text-white opacity-80">
-                Nature is a vital source of life, providing us with clean air,
-                fresh water, and healthy food. However, it is deteriorating and
-                becoming polluted due to our unsustainable human activities.
+                Dependable upkeep and maintenance solutions to ensure your expat
+                journey is worry-free.
               </p>
             </div>
             <div className="flex justify-center gap-2">
-              <Link to="/services">
+              <Link to="/Providers">
                 <button
                   className="btn btn-lg "
                   style={{
                     backgroundColor: "#F58635",
                   }}
                 >
-                  Donate a Tree
+                  See More <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </Link>
             </div>
@@ -52,28 +51,25 @@ function HeroSection() {
         <div className="carousel-caption d-flex h-100 align-items-center justify-content-center">
           <div className="text-center">
             {/* <div className="  bg-opacity-50 bg-black"> */}
-            <div className="  bg-opacity-50 bg-black">
+            <div className="  bg-opacity-50 bg-black m-5">
               <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl text-white">
-                It's Time to Make a Better Impact
+                Reliable general maintenance solutions.
               </h1>
               <p className="lead mb-12 text-white opacity-80">
-                Join our team to volunteer in tree planting and be part of the
-                global movement to conserve the environment. There may be
-                opportunities in parks, hospitals, schools, and other places.
-                Take action now and submit your volunteer application for tree
-                planting. Nature awaits your contribution.
+                Trustworthy solutions for all your general maintenance needs,
+                ensuring a worry-free expat experience.
               </p>
             </div>
             {/* </div> */}
             <div className="flex justify-center gap-2">
-              <Link to="/signup">
+              <Link to="/Providers">
                 <button
                   className="btn btn-lg "
                   style={{
                     backgroundColor: "#F58635",
                   }}
                 >
-                  Volunteer Now
+                  See More <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </Link>
             </div>
@@ -89,26 +85,24 @@ function HeroSection() {
         />
         <div className="carousel-caption d-flex h-100 align-items-center justify-content-center">
           <div className="text-center">
-            <div className="  bg-opacity-50 bg-black">
+            <div className="  bg-opacity-50 bg-black m-5">
               <h1 className="mb-4 text-3xl md:text-4xl lg:text-5xl text-white">
-                We've Planted Over 1000 Trees!
+                Premier dry cleaning for expats' clothing.
               </h1>
               <p className="lead mb-12 text-white opacity-80">
-                You will contribute to creating new forests, improving air
-                quality, and providing habitats for diverse wildlife. These
-                trees are not just plants; they are a source of life, oxygen,
-                and spaces for recreation as well.
+                Experience top-tier dry cleaning tailored specifically for
+                expatriates, preserving the quality of your clothing abroad.
               </p>
             </div>
             <div className="flex justify-center gap-2">
-              <Link to="/signup">
+              <Link to="/Providers">
                 <button
                   className="btn btn-lg"
                   style={{
                     backgroundColor: "#F58635",
                   }}
                 >
-                  Join Us
+                  See More <i class="fa-solid fa-arrow-right"></i>
                 </button>
               </Link>
             </div>

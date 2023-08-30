@@ -42,7 +42,7 @@ const Contact = () => {
                   htmlFor="exampleFormControlInput1"
                   className="form-label"
                 >
-                  Email ID
+                  Email
                 </label>
                 <input
                   type="text"
@@ -80,25 +80,25 @@ const Contact = () => {
         <div className="contact111 row-last">
           <div className="row row-cols-1 row-cols-md-3  p-3 text-white">
             <div className="col">
-              <h4>CALL US</h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt, doloribus!
-              </p>
+              <h4>
+                <i class="fa-solid fa-envelope"></i> Email
+              </h4>
+              <p className="mt-4">Get In Touch With Us</p>
+              <p className="mt-4 text-black">Test@gmail.com</p>
             </div>
             <div className="col">
-              <h4>LOCATION</h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt, doloribus!
-              </p>
+              <h4>
+                <i class="fa-solid fa-phone"></i> Call US
+              </h4>
+              <p className="mt-4">If You Want To Call Us</p>
+              <p className="mt-4 text-black">+962 782 111 991</p>
             </div>
             <div className="col">
-              <h4>Email</h4>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt, doloribus!
-              </p>
+              <h4>
+                <i class="fa-solid fa-location-dot"></i> Location
+              </h4>
+              <p className="mt-4">Vist the Compeny</p>
+              <p className="mt-4 text-black ">Altafila, Jordan</p>
             </div>
           </div>
         </div>

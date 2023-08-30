@@ -85,7 +85,7 @@ function SideBarProviders({
 
       // Filter by selected ratings
       if (selectedRatings.length > 0) {
-        const providerRating = provider.rate;
+        const providerRating = provider.rate?.rating;
         if (!selectedRatings.includes(providerRating)) {
           return false;
         }

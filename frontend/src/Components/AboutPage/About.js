@@ -24,7 +24,7 @@ const About = () => {
               <div className="col-lg-8 col-md-4">
                 <div className="services">
                   <h1 className="m-5">
-                    About <span style={{color:"#F58635"}}> Sakanat</span>
+                    About <span style={{ color: "#F58635" }}> Sakanat</span>
                   </h1>
                   <p className=" m-5 aboutText">
                     In Sakanat, we provide all the services that an expatriate
@@ -55,20 +55,28 @@ const About = () => {
                     <div className="col-sm-4 col-6 ">
                       <div className="mt-5 ">
                         <FaMedal className=" ourValueIcon" />
-                        <p className="ourValues" style={{color:"#F58635"}}>Quality Product</p>
+                        <p className="ourValues" style={{ color: "#F58635" }}>
+                          {" "}
+                          SERVICES PRODUCT
+                        </p>
                       </div>
                     </div>
 
                     <div className="col-sm-4 col-6">
                       <div className="mt-5">
                         <FaHandHoldingUsd className=" ourValueIcon" />
-                        <p className="ourValues"  style={{color:"#F58635"}}>100% Cash Back</p>
+                        <p className="ourValues" style={{ color: "#F58635" }}>
+                          COST SAVING
+                        </p>
                       </div>
                     </div>
                     <div className="col-sm-4 col-6">
                       <div className="mt-5">
                         <FaCarSide className=" ourValueIcon" />
-                        <p className="ourValues"  style={{color:"#F58635"}}> Free Delivery</p>
+                        <p className="ourValues" style={{ color: "#F58635" }}>
+                          {" "}
+                          FAST SERVICES
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -78,33 +86,6 @@ const About = () => {
           </div>
         </section>
         <Dd />
-
-        {/* <section className="ourWorksSection">
-          <div className="container">
-            <div className="row">
-              <h2 className="ourWorkHeader">Our Works</h2>
-            </div>
-            <div className="row">
-              <div className="col-lg-2 col-md-2 "></div>
-              <div className="col-lg-12 col-md-8 ">
-                <p className="ourWorkP">
-                  This platform provides expats with a range of services to help
-                  them settle into a new country or city. Users can browse
-                  through a database of available housing options, including
-                  apartments, condos, and houses, and book their directly
-                  through the platform. The platform also offers a convenient
-                  dry cleaning service, allowing users to schedule pickups and
-                  deliveries and have their clothes cleaned without leaving
-                  their home. Additionally, the platform offers a food ordering
-                  service, enabling users to order meals from local restaurants
-                  and have them delivered directly to their door. This platform
-                  aims to make the process of settling into a new country or
-                  city as seamless and convenient as possible for expats.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section> */}
       </div>
 
       {/*-------------------------------- contact section  ----------------------*/}
