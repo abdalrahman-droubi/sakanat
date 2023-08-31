@@ -119,7 +119,7 @@ const Navbar = () => {
             <ProfileDropdown/>
           </>
         ) : (
-          <Link className="log__in" to="/Login">
+          <Link className="log__in" to="/Login/guest">
             <div className=" btn main-btn rounded-pill ms-lg-5">Login</div>
           </Link>
         )}

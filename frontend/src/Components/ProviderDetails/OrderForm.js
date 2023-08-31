@@ -198,7 +198,7 @@ function OrderForm({ isCompanyOpen, companyId, providerData }) {
               <div className="rounded">
                 <img src={loginImageInDetails} className="w-100 rounded mb-3" />
               </div>
-              <Link to={"/Login"}>
+              <Link to={`/Login/${companyId}`}>
                 <Button
                   className="btn btn-warning"
                   style={{ backgroundColor: "#f58635" }}

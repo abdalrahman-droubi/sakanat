@@ -41,7 +41,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/Providers" element={<Providers />} />
         <Route path="/SignUp" element={<PageUnauthorized />} />
-        <Route path="/Login" element={<PageUnauthorized />} />
+        <Route path="/Login/:type" element={<PageUnauthorized />} />
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/editProfile" element={<EditProfile />} />
         <Route path="*" element={<PageNotFound />} />
@@ -59,7 +59,7 @@ function App() {
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/Providers" element={<Providers />} />
         <Route path="/SignUp" element={<SingnUp />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/Login/:type" element={<Login />} />
         <Route path="/userProfile" element={<PageUnauthorized />} />
         <Route path="/editProfile" element={<PageUnauthorized />} />
         <Route path="*" element={<PageNotFound />} />

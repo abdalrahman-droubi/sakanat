@@ -1,11 +1,12 @@
 import axios from "axios";
 import "./login.css";
-import React, { useState ,useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { UserDataContext } from "../../context/userDataContext";
 
 function Login() {
-  const {userRefresh} = useContext(UserDataContext)
+  const { userRefresh } = useContext(UserDataContext);
+  const { type } = useParams();
   const navigate = useNavigate();
   const [userInputs, setUserInputs] = useState({
     email: "",
@@ -23,9 +24,13 @@ function Login() {
       .post("http://localhost:5500/api/auth", userInputs)
       .then((res) => {
         localStorage.setItem("token", JSON.stringify(res.data.token));
-        navigate("/");
+        if(type === "guest"){
+          navigate("/");
+        }else{
+          navigate(`/ProviderDetails/${type}`)
+        }
         setErrorSingup(null);
-        userRefresh()
+        userRefresh();
       })
       .catch((error) => {
         console.log(error);

@@ -216,7 +216,7 @@ function SingnUp() {
                       <span className="ml-auto">
                         <p className="haveAccount">
                           If you already have an account, just
-                          <Link to="/Login" className="haveAccountLink">
+                          <Link to="/Login/guest" className="haveAccountLink">
                             login.
                           </Link>
                         </p>
