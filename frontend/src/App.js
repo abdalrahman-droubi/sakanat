@@ -15,6 +15,7 @@ import ProviderDetails from "./Pages/ProviderDetails";
 import { UserDataContext } from "./context/userDataContext";
 import PageNotFound from "./Pages/PageNotFound";
 import PageUnauthorized from "./Pages/PageUnotharized";
+import Loader from "./Pages/Loder";
 
 function App() {
   const { isLoggedIn } = useContext(UserDataContext);
@@ -27,7 +28,9 @@ function App() {
 
     return null;
   };
-  return isLoggedIn ? (
+  return isLoggedIn === "lodaer" ? (
+    <Loader />
+  ) : isLoggedIn ? (
     <>
       <ScrollToTop />
       <Navbar />

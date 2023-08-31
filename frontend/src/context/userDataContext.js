@@ -5,7 +5,7 @@ export const UserDataContext = createContext();
 
 export default function UserProviderContext({ children }) {
   const [user, setUser] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState("lodaer");
 
   const userRefresh = () => {
     if (localStorage.getItem("token")) {

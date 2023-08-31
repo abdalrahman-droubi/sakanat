@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { UserDataContext } from "../../context/userDataContext";
 import axios from "axios";
 import RatingStars from "./RatingStars";
+import { Link } from "react-router-dom";
+import Loader from "../../Pages/Loder";
 
 export const OrderHistory = () => {
   const { user } = useContext(UserDataContext);
@@ -9,12 +11,14 @@ export const OrderHistory = () => {
   const [showRating, setShowRating] = useState(false);
   const [showRatingindex, setShowRatingCard] = useState();
   const [rating, setRating] = useState(0);
+  const [ lodaer,setLodaer] = useState(false)
   useEffect(() => {
     axios
       .get(`http://localhost:5500/api/getAllRequest/${user._id}`)
       .then((response) => {
         console.log(response.data);
         setrequestServices(response.data);
+        setLodaer(true)
       })
       .catch((error) => {
         console.error("Error fetching OrderHistory data:", error);
@@ -36,8 +40,10 @@ export const OrderHistory = () => {
     setShowRating(false);
   };
   return (
+    lodaer?
     <>
       <div className="osahan-account-page-right shadow-sm bg-white p-4 h-100">
+      {requestServices.length !== 0?
         <div className="tab-content" id="myTabContent">
           <div
             className="tab-pane  fade  active show"
@@ -192,7 +198,14 @@ export const OrderHistory = () => {
             })}
           </div>
         </div>
+        :<>
+        <h3>There are no requests yet</h3>
+        <Link to={"/Providers"}>
+        <button className="btn">Make request now</button>
+        </Link>
+        </>}
       </div>
     </>
+    :<Loader/>
   );
 };
